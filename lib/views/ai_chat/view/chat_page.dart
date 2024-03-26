@@ -30,40 +30,68 @@ class ChatPage extends StatelessWidget {
           builder: (context, state) {
             return DashChat(
               messageOptions: MessageOptions(
+                
                 showCurrentUserAvatar: true,
                 avatarBuilder: (p0, onPressAvatar, onLongPressAvatar) {
-                  return Image.asset(
-                    p0.profileImage ?? 'assets/images/avatar.PNG',
-                    height: 50,
-                    width: 50,
+                  return Padding(
+                      padding: const EdgeInsets.all(5.0),
+                    child: Image.asset(
+                      p0.profileImage ?? 'assets/images/avatar.PNG',
+                      height: 50,
+                      width: 50,
+                    ),
                   );
                 },
+              messageTextBuilder: (message, previousMessage, nextMessage) {
+                return
+                Text(
+                  message.text,
+                  style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600), 
+                );
+              },
+                
                 currentUserContainerColor: const Color(0xffF8F8F6),
                 currentUserTextColor: Colors.black54,
-                borderRadius: 29,
+                
+                borderRadius: 18,
                 containerColor: const Color(0xffF8F8F6),
                 textColor: Colors.black54,
+                
                 showTime: true,
-                onLongPressMessage: (p0) {
-                  bloc.add(DeleteMessageEvent(msg: p0));
-                },
+               
+               
+                 
               ),
+              
               typingUsers: bloc.typingList,
               currentUser: bloc.user,
               inputOptions: InputOptions(
+                  inputTextStyle:const TextStyle(fontWeight: FontWeight.w600,) ,
+                    inputTextDirection: TextDirection.rtl,
                 inputDecoration: InputDecoration(
+                  
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: green),
-                      borderRadius: BorderRadius.all(Radius.circular(60))),
+                      borderSide: BorderSide(color: white),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)
+                      )
+                      ),
                   fillColor: Colors.white,
                   hintTextDirection: TextDirection.rtl,
                   hintText: "اكتب هنا",
                   border: OutlineInputBorder(
-                      borderSide: BorderSide(color: greenLight),
-                      borderRadius: BorderRadius.all(Radius.circular(60))),
+                    
+                      borderSide: BorderSide(color: grayLight),
+                      
+                        borderRadius: const BorderRadius.all(Radius.circular(10)
+                      )
+                      ),
+                      
                 ),
+                
               ),
+             
               onSend: (ChatMessage chatMessage) async {
+                
                 bloc.add(SendMessageEvent(chatMessage: chatMessage));
               },
               messages: bloc.messages,
