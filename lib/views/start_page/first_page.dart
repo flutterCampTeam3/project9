@@ -17,7 +17,7 @@ class FirstView extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.transparent,
       bottomSheet: Container(
-        height: 300,
+        height: 250,
         width: double.infinity,
         decoration: BoxDecoration(
             color: white,
@@ -37,7 +37,8 @@ class FirstView extends StatelessWidget {
                 },
               ),
               height20,
-              CustomElevatedButton(
+              ///----- no need 
+           /*   CustomElevatedButton(
                 text: "تسجيل الدخول كزائر",
                 buttonColor: white,
                 borderColor: green,
@@ -46,6 +47,7 @@ class FirstView extends StatelessWidget {
                   context.push(view: BottomNav(), isPush: false);
                 },
               ),
+              */
               height20,
               CustomElevatedButton(
                 text: "تسجيل جديد",
