@@ -2,9 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:medicine_reminder_app/service/supabase_services.dart';
 
 class ChatGPT {
+  
+   final locator = GetIt.I.get<DBServices>();
   Future<String> getChatAnswer(String prompt) async {
     await dotenv.load(fileName: ".env");
     final uri = Uri.parse(dotenv.env["LinkGPT"]!);
@@ -23,7 +27,7 @@ class ChatGPT {
           "messages": [
             {
               "role": "system",
-              "content": "you are a helpful doctor know about medicine and provide advice in a short words",
+              "content": "  startsSpeak to him by his name  ${  locator.nameUser} , play role you are a helpful medical  bot know about medicine and provide advice in a short words ,Just answer in Arabic and Just answer  For medical questions ",
             },
             {
               "role": "user",

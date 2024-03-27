@@ -97,7 +97,7 @@ class DBServices {
 
   Future<List<MedicineModel>> getAllMedicine() async {
     final medicineListData = await supabase
-        .from('mediction')
+        .from('medication')
         .select('*')
         .match({'user_id': supabase.auth.currentUser!.id});
     List<MedicineModel> listOfMedicine = [];
@@ -107,9 +107,9 @@ class DBServices {
     return listOfMedicine;
   }
 
-  //insert mediction
+  //insert medication
   Future insertMediationData(MedicineModel medicine) async {
-    await supabase.from('mediction').insert({
+    await supabase.from('medication').insert({
       'user_id': medicine.userId,
       'time': medicine.time!.substring(9, 15),
       "count": medicine.count,
@@ -119,10 +119,10 @@ class DBServices {
     });
   }
 
-  //update mediction
+  //update medication
   Future upDateMediationData(MedicineModel medicine, String id) async {
     final usetID = await getCurrentUserId();
-    await supabase.from('mediction').update({
+    await supabase.from('medication').update({
       'user_id': usetID,
       'time': medicine.time!.substring(9, 15),
       'count': medicine.count,
@@ -132,8 +132,8 @@ class DBServices {
     }).eq("id", id);
   }
 
-  //delete mediction
+  //delete medication
   Future deleteMediationData(String id) async {
-    await supabase.from('mediction').delete().eq("id", id);
+    await supabase.from('medication').delete().eq("id", id);
   }
 }
