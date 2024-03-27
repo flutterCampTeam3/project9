@@ -35,15 +35,19 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
         listener: (context, state) {
           if (state is MedicineSuccessState) {
             context.push(view: const BottomNav(), isPush: false);
-            context.showSuccessSnackBar(
-              context,
-              state.msg,
-            );
+            // context.showSuccessSnackBar(
+            //   context,
+            //   state.msg,
+            // );
+                            context.getMessages(msg: state.msg, color: green);
+
           } else if (state is MedicineErrorState) {
-            context.showErrorSnackBar(
-              context,
-              state.msg,
-            );
+            // context.showErrorSnackBar(
+            //   context,
+            //   state.msg,
+            // );
+                            context.getMessages(msg: state.msg, color: red);
+
           }
         },
         builder: (context, state) {

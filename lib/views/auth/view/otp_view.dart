@@ -31,15 +31,10 @@ class OTPView extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthSuccessState) {
           context.push(view: ChangePasswordView(), isPush: true);
-          context.showSuccessSnackBar(
-            context,
-            state.msg,
-          );
+
+          context.getMessages(msg: state.msg, color: green);
         } else if (state is AuthErrorState) {
-          context.showErrorSnackBar(
-            context,
-            state.msg,
-          );
+          context.getMessages(msg: state.msg, color: red);
         }
       },
       builder: (context, state) {
