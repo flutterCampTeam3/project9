@@ -4,6 +4,7 @@ import 'package:medicine_reminder_app/service/supabase_services.dart';
 import 'package:medicine_reminder_app/utils/colors.dart';
 import 'package:medicine_reminder_app/utils/spacing.dart';
 
+// ignore: must_be_immutable
 class dropdownWidget extends StatefulWidget {
   dropdownWidget({
     super.key,

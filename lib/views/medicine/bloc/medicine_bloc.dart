@@ -37,7 +37,10 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
 
   FutureOr<void> addMedicine(
       MedicineAdded event, Emitter<MedicineState> emit) async {
-    if (event.medicine.name!.trim().isNotEmpty) {
+    if (event.medicine.name!.trim().isNotEmpty &&
+        locator.pellCount != 0 &&
+        locator.dosesCounts != 0 &&
+        locator.pellPireod != 0) {
       try {
         await locator.insertMediationData(event.medicine);
         emit(MedicineLoadedState(list: listOfMedicine));
@@ -76,9 +79,8 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
     }
   }
 
-
-
-  FutureOr<void> changeRadio(ChangeRadioEvent event, Emitter<MedicineState> emit) {
+  FutureOr<void> changeRadio(
+      ChangeRadioEvent event, Emitter<MedicineState> emit) {
     selectedType = event.num;
     emit(ChangeState());
   }

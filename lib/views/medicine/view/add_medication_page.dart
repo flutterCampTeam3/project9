@@ -210,11 +210,15 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
                       onPressed: () async {
                         final userId = await locator.getCurrentUserId();
                         MedicineModel newMedicine = MedicineModel(
-                            count: locator.pellCount,
-                            name: pellName.text,
-                            period: locator.pellPireod,
-                            time: locator.time.toString(),
-                            userId: userId);
+                          count: locator.pellCount,
+                          name: pellName.text,
+                          period: locator.pellPireod,
+                          time: locator.time.toString(),
+                          userId: userId,
+                          state: stateEnum.notYet,
+                          done: false,
+                          schedule: TimeOfDay.now(),
+                        );
                         bloc.add(MedicineAdded(medicine: newMedicine));
                       },
                     ),

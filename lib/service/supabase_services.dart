@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:medicine_reminder_app/model/medicine_model.dart';
+import 'package:medicine_reminder_app/model/scan_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DBServices {
@@ -95,6 +96,17 @@ class DBServices {
     await supabase.auth.updateUser(UserAttributes(password: password));
   }
 
+// parCode Read and get the data
+  Future getScanData({required String qrResult}) async {
+    var ScanInfo = await supabase
+        .from('scan')
+        .select('*')
+        .match({'code': qrResult}).single();
+    ScanInfo["name"];
+    final medInfo = ScanModel.fromJson(ScanInfo);
+    return ScanInfo;
+  }
+
   Future<List<MedicineModel>> getAllMedicine() async {
     final medicineListData = await supabase
         .from('medication')
@@ -109,14 +121,18 @@ class DBServices {
 
   //insert medication
   Future insertMediationData(MedicineModel medicine) async {
-    await supabase.from('medication').insert({
+    print("in the add func");
+    final res = await supabase.from('medication').insert({
       'user_id': medicine.userId,
       'time': medicine.time!.substring(9, 15),
       "count": medicine.count,
       "piriod": medicine.period,
       "name": medicine.name,
-      'stats': medicine.state.toString()
+      'stats': medicine.state.toString(),
+      'done': false,
+      'scheduling': TimeOfDay.now(),
     });
+    print("in the add func after the add ${res.hashCode.toInt()}");
   }
 
   //update medication
@@ -128,7 +144,9 @@ class DBServices {
       'count': medicine.count,
       'piriod': medicine.period,
       'name': medicine.name,
-      'stats': medicine.state.toString()
+      'done': medicine.done,
+      'scheduling': medicine.schedule,
+      'stats': medicine.state.toString(),
     }).eq("id", id);
   }
 

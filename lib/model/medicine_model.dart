@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class MedicineModel {
@@ -7,9 +8,10 @@ class MedicineModel {
   int? period;
   String? userId;
   String? id;
-  String? schedule;
+  TimeOfDay? schedule;
   bool? done;
   stateEnum? state;
+  String? before;
 
   MedicineModel(
       {this.name,
@@ -19,18 +21,19 @@ class MedicineModel {
       this.userId,
       this.schedule,
       this.done,
+      this.before,
       this.state = stateEnum.notYet});
 
   MedicineModel.fromJson(Map<String, dynamic> json) {
-    json['stats'];
-    name = json['name'];
-    time = json['time'];
-    count = json['count'];
-    period = json['period'];
-    userId = json['user_id'];
-    id = json['id'];
-    schedule = json['schedule'];
-    done = json['done'];
+    name = json['name'] ?? "";
+    time = json['time'] ?? "";
+    count = json['count'] ?? 0;
+    period = json['period'] ?? 0;
+    userId = json['user_id'] ?? "";
+    id = json['id'] ?? "";
+    schedule = json['scheduling'] ?? TimeOfDay.now();
+    done = json['done'] ?? false;
+    before = json['before'] ?? "";
 
     state = json['stats'].toString().contains("stateEnum.notYet")
         ? stateEnum.notYet
@@ -42,14 +45,14 @@ class MedicineModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['time'] = time;
     data['count'] = count;
     data['period'] = period;
     data['user_id'] = userId;
     data['id'] = id;
-    data['schedule'] = schedule;
+    data['scheduling'] = schedule;
     data['done'] = done;
     data['state'] = state;
     return data;
