@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:medicine_reminder_app/service/supabase_services.dart';
 import 'package:medicine_reminder_app/utils/colors.dart';
 import 'package:medicine_reminder_app/utils/spacing.dart';
 
@@ -8,7 +9,7 @@ class dropdownWidget extends StatefulWidget {
     super.key,
     required this.path,
     required this.title,
-    this.count = 30,
+    this.count = 3,
     required this.type,
     required this.page,
   });
@@ -25,15 +26,7 @@ class _dropdownWidgetState extends State<dropdownWidget> {
   String dropDownValue = "....";
   @override
   Widget build(BuildContext context) {
-    // final locator = GetIt.I.get<DBService>();
-    // if (widget.page == 2) {
-    //   if (widget.type == "day") {
-    //     dropDownValue = locator.days.toString();
-    //   }
-    //   if (widget.type == "pill") {
-    //     dropDownValue = locator.pill.toString();
-    //   }
-    // }
+    final locator = GetIt.I.get<DBServices>();
     return Expanded(
       child: Container(
         height: MediaQuery.of(context).size.height * 0.07,
@@ -60,15 +53,7 @@ class _dropdownWidgetState extends State<dropdownWidget> {
               ),
               onChanged: (value) {
                 setState(() {
-                  // if (value != null) {
-                  //   if (widget.type == "day") {
-                  //     locator.days = value;
-                  //   } else if (widget.type == "pill") {
-                  //     locator.pill = value;
-                  //   } else if (widget.type == "counts") {
-                  //     locator.counts = value;
-                  //   }
-                  // }
+                  locator.dosesCounts = value!;
                   dropDownValue = value.toString();
                 });
               },

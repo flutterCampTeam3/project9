@@ -21,3 +21,5 @@ final class MedicineErrorState extends MedicineState {
   final String msg;
   MedicineErrorState({required this.msg});
 }
+
+final class ChangeState extends MedicineState {}

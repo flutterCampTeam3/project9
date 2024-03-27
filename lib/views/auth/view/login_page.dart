@@ -14,7 +14,6 @@ import 'package:medicine_reminder_app/views/auth/view/reset_password_page.dart';
 import 'package:medicine_reminder_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:medicine_reminder_app/widgets/custom_elevated_button.dart';
 import 'package:medicine_reminder_app/widgets/custom_lodaing_circle.dart';
-import 'package:medicine_reminder_app/widgets/custom_text_field.dart';
 import 'package:medicine_reminder_app/widgets/custom_textfield.dart';
 
 class LoginView extends StatelessWidget {
@@ -24,6 +23,8 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
+    emailController.text = "ss@gmail.com";
+    passwordController.text = "11223344";
     return BlocProvider(
       create: (context) => AuthBloc(),
       child: Scaffold(
@@ -137,7 +138,7 @@ class LoginView extends StatelessWidget {
                         height10,
                         RichText(
                           text: TextSpan(
-                            text: 'هل يوجد لديك حساب؟ ',
+                            text: 'لا يوجد لديك حساب؟ ',
                             style: const TextStyle(
                               color: black,
                               fontSize: 16,

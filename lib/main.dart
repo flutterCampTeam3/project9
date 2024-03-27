@@ -54,7 +54,7 @@ class MainApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: GoogleFonts.vazirmatn().fontFamily,
         ),
-        home: const MedInformation(),
+        home: const SplashScreen(),
       ),
     );
   }

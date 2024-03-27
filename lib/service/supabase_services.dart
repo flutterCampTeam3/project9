@@ -8,6 +8,7 @@ class DBServices {
   //supabase client
   final supabase = Supabase.instance.client;
   int pellCount = 0;
+  int dosesCounts = 0;
   int pellPireod = 0;
   TimeOfDay time = TimeOfDay.now();
   String email = "";
@@ -38,6 +39,8 @@ class DBServices {
   //Login
   Future login({required String email, required String password}) async {
     await supabase.auth.signInWithPassword(password: password, email: email);
+    final userId = await getCurrentUserId();
+    await getUser(id: userId);
   }
 
   //Logout

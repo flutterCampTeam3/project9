@@ -12,10 +12,12 @@ part 'medicine_state.dart';
 class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
   final locator = GetIt.I.get<DBServices>();
   List<MedicineModel> listOfMedicine = [];
+  int selectedType = 1;
 
   MedicineBloc() : super(MedicineInitial()) {
     on<MedicineEvent>((event, emit) {});
     on<MedicineLoadEvent>(loadMedicineData);
+    on<ChangeRadioEvent>(changeRadio);
     on<MedicineAdded>(addMedicine);
     on<MedicineUpdated>(updateMedicine);
     on<MedicineDeleted>(deleteMedicine);
@@ -72,5 +74,12 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
     } catch (e) {
       emit(MedicineErrorState(msg: "حدث خطأ أثناء حذف الدواء"));
     }
+  }
+
+
+
+  FutureOr<void> changeRadio(ChangeRadioEvent event, Emitter<MedicineState> emit) {
+    selectedType = event.num;
+    emit(ChangeState());
   }
 }

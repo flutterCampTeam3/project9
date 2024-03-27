@@ -5,6 +5,13 @@ sealed class MedicineEvent {}
 
 class MedicineLoadEvent extends MedicineEvent {}
 
+class ChangeRadioEvent extends MedicineEvent {
+  final int num;
+
+  ChangeRadioEvent({required this.num});
+  
+}
+
 class MedicineAdded extends MedicineEvent {
   final MedicineModel medicine;
 

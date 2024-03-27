@@ -16,7 +16,6 @@ import 'package:medicine_reminder_app/widgets/custom_dropdawn.dart';
 import 'package:medicine_reminder_app/widgets/custom_elevated_button.dart';
 import 'package:medicine_reminder_app/widgets/custom_label.dart';
 import 'package:medicine_reminder_app/widgets/custom_notification.dart';
-import 'package:medicine_reminder_app/widgets/custom_drop_menu.dart';
 
 class AddMedicationPage extends StatefulWidget {
   const AddMedicationPage({super.key});
@@ -28,7 +27,6 @@ class AddMedicationPage extends StatefulWidget {
 class _AddMedicationPageState extends State<AddMedicationPage> {
   @override
   Widget build(BuildContext context) {
-    int selectedType = 1;
     final locator = GetIt.I.get<DBServices>();
     TextEditingController pellName = TextEditingController();
     return BlocProvider(
@@ -141,11 +139,9 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
                               fillColor: MaterialStateProperty.all(
                                   textfieldGreenColor),
                               value: 1,
-                              groupValue: selectedType,
+                              groupValue: bloc.selectedType,
                               onChanged: (val) {
-                                setState(() {
-                                  selectedType = 1;
-                                });
+                                bloc.add(ChangeRadioEvent(num: 1));
                               },
                             ),
                             const Text("قبل الاكل"),
@@ -157,11 +153,9 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
                               fillColor: MaterialStateProperty.all(
                                   textfieldGreenColor),
                               value: 2,
-                              groupValue: selectedType,
+                              groupValue: bloc.selectedType,
                               onChanged: (val) {
-                                setState(() {
-                                  selectedType = 2;
-                                });
+                                bloc.add(ChangeRadioEvent(num: 2));
                               },
                             ),
                             const Text(" بعد الاكل"),

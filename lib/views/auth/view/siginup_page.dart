@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,16 +86,6 @@ class SignUpView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // const Text(
-                          //   "اسم المستخدم",
-                          //   style: TextStyle(
-                          //     fontFamily: 'MarkaziText',
-                          //     color: black,
-                          //     fontWeight: FontWeight.bold,
-                          //     fontSize: 20,
-                          //   ),
-                          // ),
-
                           TextFieldWidget(
                             text: "اسم المستخدم",
                             controller: nameController,
@@ -111,7 +102,6 @@ class SignUpView extends StatelessWidget {
                             obscure: true,
                           ),
                           const Spacer(),
-
                           CustomElevatedButton(
                               onPressed: () {
                                 context.read<AuthBloc>().add(SignUpEvent(
@@ -122,20 +112,34 @@ class SignUpView extends StatelessWidget {
                               buttonColor: darkGreen,
                               text: "تسجيل جديد",
                               styleColor: white),
-                          TextButton(
-                            onPressed: () {
-                              context.push(
-                                  view: const LoginView(), isPush: false);
-                            },
-                            child: Text(
-                              "هل لديك حساب مسبقًا؟",
-                              style: TextStyle(
-                                color: greenText,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                          height10,
+                          Center(
+                            child: RichText(
+                              text: TextSpan(
+                                text: 'هل يوجد لديك حساب؟ ',
+                                style: const TextStyle(
+                                  color: black,
+                                  fontSize: 16,
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: 'سجل دخولك',
+                                    style: TextStyle(
+                                      color: greenText,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        context.push(
+                                            view: const LoginView(),
+                                            isPush: false);
+                                      },
+                                  ),
+                                ],
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
