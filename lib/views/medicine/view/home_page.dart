@@ -72,8 +72,8 @@ class HomeView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         height56,
-                        Image.asset("assets/images/nodrugs.jpeg"),
-                        Text("لا يوجد تنبيهات "),
+                        Image.asset("assets/images/Pharmacist-bro.png"),
+                        const Text("لا يوجد تنبيهات "),
                       ],
                     );
                   },

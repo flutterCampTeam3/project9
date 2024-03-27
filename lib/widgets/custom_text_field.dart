@@ -1,16 +1,14 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:medicine_reminder_app/utils/colors.dart';
 
 class TextAuth extends StatelessWidget {
   const TextAuth({
-    Key? key,
-     this.hintText,
+    super.key,
+    this.hintText,
     this.isSecure = false,
     this.controller,
-     this.labelText,
-  }) : super(key: key);
+    this.labelText,
+  });
 
   final String? labelText;
   final String? hintText;
@@ -40,10 +38,10 @@ class TextAuth extends StatelessWidget {
           obscureText: isSecure,
           controller: controller,
           decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: hintText,
+            border: InputBorder.none,
+            hintText: hintText,
+          ),
         ),
-      ),
       ),
     );
   }

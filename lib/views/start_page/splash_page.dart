@@ -17,40 +17,48 @@ class SplashScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is SessionAvailabilityState) {
           if (state.isAvailable != null) {
-            context.push(view: BottomNav(), isPush: false);
+            context.push(view: const BottomNav(), isPush: false);
           } else {
-            context.push(view: FirstView(), isPush: false);
+            context.push(view: const FirstView(), isPush: false);
           }
         }
       },
       child: Scaffold(
-        backgroundColor: green,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/logo_2.png',
-                width: 200,
-                height: 200,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset('assets/icons/hand_pell.svg'),
-                  width4,
-                  Text(
-                    'ساعد',
-                    style: TextStyle(
-                        fontFamily: 'Cairo',
-                        fontSize: 35,
-                        height: 0.5,
-                        color: white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              )
-            ],
+        body: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [greenText, moreDarkGreenColor, green],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/newIcon.png',
+                  width: 200,
+                  // height: 200,
+                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     SvgPicture.asset('assets/icons/hand_pell.svg'),
+                //     width4,
+                //     Text(
+                //       'ساعد',
+                //       style: TextStyle(
+                //           fontFamily: 'Cairo',
+                //           fontSize: 35,
+                //           height: 0.5,
+                //           color: white,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //   ],
+                // )
+              ],
+            ),
           ),
         ),
       ),

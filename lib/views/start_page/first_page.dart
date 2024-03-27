@@ -15,45 +15,45 @@ class FirstView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.transparent,
       bottomSheet: Container(
-        height: 300,
+        height: 250,
         width: double.infinity,
         decoration: BoxDecoration(
             color: white,
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             children: [
-              height20,
+              height40,
               CustomElevatedButton(
                 text: "تسجيل الدخول",
-                buttonColor: green,
+                buttonColor: darkGreen,
                 styleColor: white,
                 onPressed: () {
-                  context.push(view: LoginView(), isPush: false);
+                  context.push(view: const LoginView(), isPush: false);
                 },
               ),
               height20,
-              CustomElevatedButton(
-                text: "تسجيل الدخول كزائر",
-                buttonColor: white,
-                borderColor: green,
-                styleColor: black,
-                onPressed: () {
-                  context.push(view: BottomNav(), isPush: false);
-                },
-              ),
-              height20,
+              // CustomElevatedButton(
+              //   text: "تسجيل الدخول كزائر",
+              //   buttonColor: white,
+              //   borderColor: green,
+              //   styleColor: black,
+              //   onPressed: () {
+              //     context.push(view: const BottomNav(), isPush: false);
+              //   },
+              // ),
+              // height20,
               CustomElevatedButton(
                 text: "تسجيل جديد",
-                buttonColor: green,
-                styleColor: white,
+                buttonColor: whiteColor,
+                borderColor: greenText,
+                styleColor: black,
                 onPressed: () {
                   // ** here is logic ** \\
-                  context.push(view: SignUpView(), isPush: false);
+                  context.push(view: const SignUpView(), isPush: false);
                 },
               ),
             ],
@@ -63,35 +63,17 @@ class FirstView extends StatelessWidget {
       body: Container(
         height: double.maxFinite,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [green, green, greenLight],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter),
-        ),
+            gradient: LinearGradient(
+                colors: [greenText, darkGreen],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter)),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/images/logo_2.png',
-                width: 175,
-                height: 175,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset('assets/icons/hand_pell.svg'),
-                  width4,
-                  Text(
-                    'ساعد',
-                    style: TextStyle(
-                        fontFamily: 'Cairo',
-                        fontSize: 35,
-                        height: 0.1,
-                        color: white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
+                'assets/images/newIcon.png',
+                width: 200,
               ),
               height100
             ],

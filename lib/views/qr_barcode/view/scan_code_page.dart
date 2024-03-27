@@ -5,16 +5,23 @@ import 'package:medicine_reminder_app/utils/spacing.dart';
 import 'package:medicine_reminder_app/views/qr_barcode/bloc/scan_bloc.dart';
 import 'package:medicine_reminder_app/widgets/custom_elevated_button.dart';
 
-
 class ScanView extends StatelessWidget {
+  const ScanView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: green,
-        leading: Icon(Icons.qr_code_scanner, color: white,),
-        title: Text('مسح الباركود', style: TextStyle(color: white, fontFamily: 'MarkaziText',
-          ),),
+        leading: Icon(
+          Icons.qr_code_scanner,
+          color: white,
+        ),
+        title: Text(
+          'مسح الباركود',
+          style: TextStyle(
+              color: white, fontSize: 25, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -29,14 +36,17 @@ class ScanView extends StatelessWidget {
                   if (state is ScanInitial) {
                     return Column(
                       children: [
-                         Image.asset(
+                        height60,
+                        Image.asset(
                           'assets/images/logo_2.png',
                           width: 175,
                           height: 175,
                         ),
                         Text(
                           "لنقم بالمسح",
-                          style: TextStyle(color: green, fontSize: 30, fontFamily: 'MarkaziText',
+                          style: TextStyle(
+                            color: green,
+                            fontSize: 30,
                           ),
                         ),
                       ],
@@ -44,20 +54,26 @@ class ScanView extends StatelessWidget {
                   } else if (state is ScanSuccess) {
                     return Text(
                       state.qrString,
-                      style: TextStyle(color: green, fontSize: 30, fontFamily: 'MarkaziText',
+                      style: TextStyle(
+                        color: green,
+                        fontSize: 30,
+                        fontFamily: 'MarkaziText',
                       ),
                     );
                   } else if (state is ScanFailure) {
                     return Column(
                       children: [
-                         Image.asset(
+                        Image.asset(
                           'assets/images/logo_2.png',
                           width: 175,
                           height: 175,
                         ),
                         const Text(
                           'عذرًا، لم نتمكن من قراءة الباركود. يرجى المحاولة مرة أخرى.',
-                          style: TextStyle(color: Colors.red, fontSize: 30, fontFamily: 'MarkaziText',
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 30,
+                            fontFamily: 'MarkaziText',
                           ),
                         ),
                       ],
@@ -65,14 +81,17 @@ class ScanView extends StatelessWidget {
                   } else if (state is ScanCanceled) {
                     return Column(
                       children: [
-                         Image.asset(
+                        Image.asset(
                           'assets/images/logo_2.png',
                           width: 175,
                           height: 175,
                         ),
                         Text(
                           'تم إلغاء مسح الباركود',
-                          style: TextStyle(color: green, fontSize: 30, fontFamily: 'MarkaziText',
+                          style: TextStyle(
+                            color: green,
+                            fontSize: 30,
+                            fontFamily: 'MarkaziText',
                           ),
                         ),
                       ],
@@ -82,15 +101,16 @@ class ScanView extends StatelessWidget {
                   }
                 },
               ),
-              height100,
+              const Spacer(),
               CustomElevatedButton(
-                onPressed: (){
+                onPressed: () {
                   BlocProvider.of<ScanBloc>(context).add(ScanQR());
                 },
                 text: "امسح الباركود",
                 buttonColor: green,
                 styleColor: pureWhite,
               ),
+              height40
             ],
           ),
         ),

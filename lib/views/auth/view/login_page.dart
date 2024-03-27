@@ -15,6 +15,7 @@ import 'package:medicine_reminder_app/views/bottom_nav_bar/view/bottom_nav_bar.d
 import 'package:medicine_reminder_app/widgets/custom_elevated_button.dart';
 import 'package:medicine_reminder_app/widgets/custom_lodaing_circle.dart';
 import 'package:medicine_reminder_app/widgets/custom_text_field.dart';
+import 'package:medicine_reminder_app/widgets/custom_textfield.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -30,17 +31,15 @@ class LoginView extends StatelessWidget {
           child: BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state is AuthSuccessState) {
-                context.push(view: BottomNav(), isPush: true);
-                context.getMessages(
-                    msg: state.msg, color: green);
+                context.push(view: const BottomNav(), isPush: true);
+                context.getMessages(msg: state.msg, color: green);
               } else if (state is AuthErrorState) {
-                context.getMessages(
-                    msg: state.msg, color: red);
+                context.getMessages(msg: state.msg, color: red);
               }
             },
             builder: (context, state) {
               if (state is AuthLoadingState) {
-                return LoadingScreen();
+                return const LoadingScreen();
               }
               return Column(
                 children: [
@@ -50,7 +49,7 @@ class LoginView extends StatelessWidget {
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                          colors: [green, green, greenLight],
+                          colors: [greenText, darkGreen],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter),
                       borderRadius: const BorderRadius.only(
@@ -62,26 +61,28 @@ class LoginView extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          height40,
                           Image.asset(
-                            'assets/images/logo_2.png',
-                            width: 175,
-                            height: 175,
+                            'assets/images/newIcon.png',
+                            width: 200,
+                            height: 200,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset('assets/icons/hand_pell.svg'),
-                              width4,
-                              Text(
-                                'ساعد',
-                                style: TextStyle(
-                                    fontFamily: 'Cairo',
-                                    fontSize: 35,
-                                    height: 0.1,
-                                    color: white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                          height40,
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 30.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "  تسجيل دخول",
+                                  style: TextStyle(
+                                      color: whiteColor,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -89,41 +90,16 @@ class LoginView extends StatelessWidget {
                   ),
                   height16,
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: [
-                        const Align(
-                          alignment: Alignment.bottomRight,
-                          child: Text(
-                            "الإيميل",
-                            style: TextStyle(
-                              fontFamily: 'MarkaziText',
-                              color: black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                        height10,
-                        TextAuth(
+                        TextFieldWidget(
+                          text: "الايميل",
                           controller: emailController,
                         ),
-                        height26,
-                        const Align(
-                          alignment: Alignment.bottomRight,
-                          child: Text(
-                            "كلمة المرور",
-                            style: TextStyle(
-                              fontFamily: 'MarkaziText',
-                              color: black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                        height8,
-                        TextAuth(
-                          isSecure: true,
+                        height10,
+                        TextFieldWidget(
+                          text: "كلمة المرور",
                           controller: passwordController,
                         ),
                         Align(
@@ -137,26 +113,24 @@ class LoginView extends StatelessWidget {
                               "هل نسيت كلمة المرور؟",
                               style: TextStyle(
                                 fontFamily: 'MarkaziText',
-                                color: green,
+                                color: greenText,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15,
                               ),
                             ),
                           ),
                         ),
+                        // const Spacer(),
+                        CustomElevatedButton(
+                            buttonColor: darkGreen,
+                            onPressed: () {
+                              context.read<AuthBloc>().add(LoginEvent(
+                                  email: emailController.text,
+                                  password: passwordController.text));
+                            },
+                            text: "تسجيل الدخول",
+                            styleColor: white),
                         height10,
-                        SizedBox(
-                          width: context.getWidth() / 1.2,
-                          child: CustomElevatedButton(
-                              buttonColor: green,
-                              onPressed: () {
-                                context.read<AuthBloc>().add(LoginEvent(
-                                    email: emailController.text,
-                                    password: passwordController.text));
-                              },
-                              text: "تسجيل الدخول",
-                              styleColor: white),
-                        ),
                         RichText(
                           text: TextSpan(
                             text: 'هل يوجد لديك حساب؟ ',
@@ -168,15 +142,15 @@ class LoginView extends StatelessWidget {
                               TextSpan(
                                 text: 'سجل الآن',
                                 style: TextStyle(
-                                  fontFamily: 'MarkaziText',
-                                  color: green,
+                                  color: greenText,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,
                                 ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     context.push(
-                                        view: SignUpView(), isPush: false);
+                                        view: const SignUpView(),
+                                        isPush: false);
                                   },
                               ),
                             ],

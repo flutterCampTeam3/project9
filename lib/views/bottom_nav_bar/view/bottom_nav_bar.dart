@@ -72,14 +72,14 @@ class BottomNav extends StatelessWidget {
                     color: green,
                     spreadRadius: 1,
                     blurRadius: 30,
-                    offset: Offset(0, 4),
+                    offset: const Offset(0, 4),
                   ),
                 ],
                 shape: BoxShape.circle,
               ),
               child: FloatingActionButton(
                 onPressed: () {
-                  context.push(view: AddMedicationPage(), isPush: true);
+                  context.push(view: const AddMedicationPage(), isPush: true);
                 },
                 backgroundColor: green,
                 child: const Icon(Icons.add, color: Colors.white),
