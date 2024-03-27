@@ -18,15 +18,17 @@ class HeaderHomePage extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthSuccessState) {
           context.push(view: const FirstView(), isPush: true);
-          context.showSuccessSnackBar(
-            context,
-            state.msg,
-          );
+          // context.showSuccessSnackBar(
+          //   context,
+          //   state.msg,
+          // );
+          context.getMessages(msg: state.msg, color: green);
         } else if (state is AuthErrorState) {
-          context.showErrorSnackBar(
-            context,
-            state.msg,
-          );
+          // context.showErrorSnackBar(
+          //   context,
+          //   state.msg,
+          // );
+          context.getMessages(msg: state.msg, color: red);
         }
       },
       child: Container(
