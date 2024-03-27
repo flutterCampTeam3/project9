@@ -123,15 +123,22 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
                       ),
                     ],
                   ),
-                  height40,
-                  Container(
+                 height20,
+                  const CustomLabel(
+                    label: "موعد اخذ الدواء",
+                  ),
+                  height10,
+                 
+                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
                       color: greyColor,
                       borderRadius: const BorderRadius.all(Radius.circular(14)),
                     ),
+                    
+                    
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Row(
                           children: [

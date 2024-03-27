@@ -10,6 +10,8 @@ class DBServices {
   int pellCount = 0;
   int dosesCounts = 0;
   int pellPireod = 0;
+  String typeat="قبل الاكل ";
+   
   TimeOfDay time = TimeOfDay.now();
   String email = "";
   String nameUser = "بك";

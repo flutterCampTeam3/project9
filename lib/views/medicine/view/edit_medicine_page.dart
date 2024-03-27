@@ -108,6 +108,55 @@ class EditMedicineView extends StatelessWidget {
                       DropMenu(),
                     ],
                   ),
+                   height20,
+                  const CustomLabel(
+                    label: "موعد اخذ الدواء",
+                  ),
+                  height10,
+                 
+                   Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                      color: greyColor,
+                      borderRadius: const BorderRadius.all(Radius.circular(14)),
+                    ),
+                    
+                    
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            Radio(
+                              fillColor: MaterialStateProperty.all(
+                                  textfieldGreenColor),
+                              value: 1,
+                              groupValue: bloc.selectedType,
+                              onChanged: (val) {
+                                bloc.add(ChangeRadioEvent(num: 1));
+                              },
+                            ),
+                            const Text("قبل الاكل"),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Radio(
+                              fillColor: MaterialStateProperty.all(
+                                  textfieldGreenColor),
+                              value: 2,
+                              groupValue: bloc.selectedType,
+                              onChanged: (val) {
+                                bloc.add(ChangeRadioEvent(num: 2));
+                              },
+                            ),
+                            const Text(" بعد الاكل"),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                
                   height56,
                   const CustomLabel(label: "إشعارات"),
                   height10,
@@ -130,15 +179,44 @@ class EditMedicineView extends StatelessWidget {
                     },
                   ),
                   height10,
-                  CustomElevatedButton(
-                    text: "حذف",
-                    buttonColor: pureWhite,
-                    styleColor: black,
-                    borderColor: green,
-                    onPressed: () async {
-                      bloc.add(MedicineDeleted(medicine: medicine));
-                    },
-                  )
+                 CustomElevatedButton(
+  text: "حذف",
+  buttonColor: pureWhite,
+  styleColor: black,
+  borderColor: green,
+  onPressed: () async {
+    
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("تأكيد الحذف"),
+          content: Text("هل أنت متأكد أنك تريد حذف هذا الدواء؟"),
+          actions: <Widget>[
+           
+            TextButton(
+              child: Text("إلغاء"),
+              onPressed: () {
+                Navigator.of(context).pop(); 
+              },
+            ),
+         
+            TextButton(
+              child: Text("حذف"),
+              onPressed: () {
+              
+                Navigator.of(context).pop();
+               
+                bloc.add(MedicineDeleted(medicine: medicine));
+              },
+            ),
+          ],
+        );
+      },
+    );
+  },
+),
+
                 ],
               ),
             ),

@@ -20,133 +20,142 @@ class _DropMenuState extends State<DropMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Container(
-          width: 151,
-          height: 48,
-          decoration: BoxDecoration(
-            color: greyColor,
-            borderRadius: const BorderRadius.all(Radius.circular(14)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SvgPicture.asset("assets/icons/pells.svg"),
-                Text(
-                  "$_selectedNumberPill",
-                  style: const TextStyle(
-                    fontFamily: 'NotoSansArabic',
-                  ),
-                ),
-                DropdownButton<int>(
-                  menuMaxHeight: 100,
-                  dropdownColor: pureWhite,
-                  borderRadius: BorderRadius.circular(20),
-                  icon: const Icon(Icons.arrow_drop_down),
-                  hint: const Text(
-                    "حبة",
-                    style: TextStyle(
-                      fontFamily: 'NotoSansArabic',
+        Row(
+          children: [
+            Container(
+              width: 151,
+              height: 48,
+              decoration: BoxDecoration(
+                color: greyColor,
+                borderRadius: const BorderRadius.all(Radius.circular(14)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SvgPicture.asset("assets/icons/pells.svg"),
+                    Text(
+                      "$_selectedNumberPill",
+                      style: const TextStyle(
+                        fontFamily: 'NotoSansArabic',
+                      ),
                     ),
-                  ),
-                  onChanged: (int? newValue) {
-                    if (newValue != null) {
-                      setState(() {
-                        _selectedNumberPill = newValue;
-                        GetIt.I.get<DBServices>().pellCount = newValue;
-                      });
-                    }
-                  },
-                  items: List<DropdownMenuItem<int>>.generate(
-                    CountPill,
-                    (int index) {
-                      return DropdownMenuItem<int>(
-                        value: index + 1,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: greenLight),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '${index + 1}',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontFamily: 'NotoSansArabic',
-                                ),
+                    DropdownButton<int>(
+                      menuMaxHeight: 100,
+                      dropdownColor: pureWhite,
+                      borderRadius: BorderRadius.circular(20),
+                      icon: const Icon(Icons.arrow_drop_down),
+                      hint: const Text(
+                        "حبة",
+                        style: TextStyle(
+                          fontFamily: 'NotoSansArabic',
+                        ),
+                      ),
+                      onChanged: (int? newValue) {
+                        if (newValue != null) {
+                          setState(() {
+                            _selectedNumberPill = newValue;
+                            GetIt.I.get<DBServices>().pellCount = newValue;
+                          });
+                        }
+                      },
+                      items: List<DropdownMenuItem<int>>.generate(
+                        CountPill,
+                        (int index) {
+                          return DropdownMenuItem<int>(
+                            value: index + 1,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: greenLight),
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    '${index + 1}',
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      fontFamily: 'NotoSansArabic',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-        const SizedBox(
-          width: 20,
-        ),
-        Container(
-          width: 151,
-          height: 48,
-          decoration: BoxDecoration(
-            color: greyColor,
-            borderRadius: const BorderRadius.all(Radius.circular(14)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.date_range_rounded, color: grey),
-                Text("$_selectedNumberDay"),
-                DropdownButton<int>(
-                  menuMaxHeight: 100,
-                  dropdownColor: pureWhite,
-                  borderRadius: BorderRadius.circular(20),
-                  icon: const Icon(Icons.arrow_drop_down),
-                  hint: const Text("يوم"),
-                  onChanged: (int? newValue) {
-                    if (newValue != null) {
-                      setState(() {
-                        _selectedNumberDay = newValue;
-                        GetIt.I.get<DBServices>().pellPireod = newValue;
-                      });
-                    }
-                  },
-                  items: List<DropdownMenuItem<int>>.generate(
-                    CountDay,
-                    (int index) {
-                      return DropdownMenuItem<int>(
-                        value: index + 1,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: greenLight),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('${index + 1}', textAlign: TextAlign.center),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+            const SizedBox(
+              width: 20,
+            ),
+            Container(
+              width: 151,
+              height: 48,
+              decoration: BoxDecoration(
+                color: greyColor,
+                borderRadius: const BorderRadius.all(Radius.circular(14)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(Icons.date_range_rounded, color: grey),
+                    Text("$_selectedNumberDay"),
+                    DropdownButton<int>(
+                      menuMaxHeight: 100,
+                      dropdownColor: pureWhite,
+                      borderRadius: BorderRadius.circular(20),
+                      icon: const Icon(Icons.arrow_drop_down),
+                      hint: const Text("يوم"),
+                      onChanged: (int? newValue) {
+                        if (newValue != null) {
+                          setState(() {
+                            _selectedNumberDay = newValue;
+                            GetIt.I.get<DBServices>().pellPireod = newValue;
+                          });
+                        }
+                      },
+                      items: List<DropdownMenuItem<int>>.generate(
+                        CountDay,
+                        (int index) {
+                          return DropdownMenuItem<int>(
+                            value: index + 1,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: greenLight),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('${index + 1}', textAlign: TextAlign.center),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
+     //------------------before eat
+
+    
+      
+        //--------------------after eat
       ],
     );
   }
