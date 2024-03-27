@@ -16,7 +16,6 @@ import 'package:medicine_reminder_app/widgets/custom_dropdawn.dart';
 import 'package:medicine_reminder_app/widgets/custom_elevated_button.dart';
 import 'package:medicine_reminder_app/widgets/custom_label.dart';
 import 'package:medicine_reminder_app/widgets/custom_notification.dart';
-import 'package:medicine_reminder_app/widgets/custom_drop_menu.dart';
 
 class AddMedicationPage extends StatelessWidget {
   const AddMedicationPage({super.key});
