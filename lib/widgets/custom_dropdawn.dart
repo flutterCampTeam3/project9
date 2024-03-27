@@ -9,7 +9,7 @@ class dropdownWidget extends StatefulWidget {
     super.key,
     required this.path,
     required this.title,
-    this.count = 3,
+    this.count = 30,
     required this.type,
     required this.page,
   });
@@ -27,6 +27,14 @@ class _dropdownWidgetState extends State<dropdownWidget> {
   @override
   Widget build(BuildContext context) {
     final locator = GetIt.I.get<DBServices>();
+    if (widget.page == 2) {
+      if (widget.type == "day") {
+        dropDownValue = locator.pellPireod.toString();
+      }
+      if (widget.type == "pill") {
+        dropDownValue = locator.pellCount.toString();
+      }
+    }
     return Expanded(
       child: Container(
         height: MediaQuery.of(context).size.height * 0.07,
@@ -53,7 +61,15 @@ class _dropdownWidgetState extends State<dropdownWidget> {
               ),
               onChanged: (value) {
                 setState(() {
-                  locator.dosesCounts = value!;
+                  if (value != null) {
+                    if (widget.type == "day") {
+                      locator.pellPireod = value;
+                    } else if (widget.type == "pill") {
+                      locator.pellCount = value;
+                    } else if (widget.type == "counts") {
+                      locator.dosesCounts = value;
+                    }
+                  }
                   dropDownValue = value.toString();
                 });
               },

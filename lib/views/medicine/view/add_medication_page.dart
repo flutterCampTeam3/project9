@@ -89,7 +89,7 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
                   ),
                   height40,
                   const CustomLabel(
-                    label: "كم حبة باليوم ومدة الدواء",
+                    label: "كم حبة بالجرعة الواحدة ومدة الدواء",
                   ),
                   height10,
                   Row(
@@ -100,7 +100,7 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
                         child: SizedBox(
                           height: 48,
                           child: dropdownWidget(
-                            type: '',
+                            type: 'day',
                             title: "يوم",
                             path: 'assets/images/calendar-fill 2.png',
                             count: 30,
@@ -113,7 +113,7 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
                         child: SizedBox(
                           height: 48,
                           child: dropdownWidget(
-                            type: 'counts',
+                            type: 'pill',
                             title: "حبة",
                             path: 'assets/images/calendar-fill 1.png',
                             count: 20,

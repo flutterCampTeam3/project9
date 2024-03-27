@@ -56,7 +56,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         await serviceLocator.login(
             email: event.email, password: event.password);
-
+        Future.delayed(const Duration(seconds: 5));
         emit(AuthSuccessState(msg: "تم تسجيل الدخول بنجاح"));
       } on AuthException catch (e) {
         emit(AuthErrorState(
