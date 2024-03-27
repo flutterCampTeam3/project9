@@ -31,14 +31,20 @@ class OTPView extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthSuccessState) {
           context.push(view: ChangePasswordView(), isPush: true);
-          context.getMessages(msg: state.msg, color: green,);
+          context.showSuccessSnackBar(
+            context,
+            state.msg,
+          );
         } else if (state is AuthErrorState) {
-          context.getMessages(msg: state.msg, color: red);
+          context.showErrorSnackBar(
+            context,
+            state.msg,
+          );
         }
       },
       builder: (context, state) {
         if (state is AuthLoadingState) {
-          return LoadingScreen();
+          return const LoadingScreen();
         }
         return Scaffold(
           resizeToAvoidBottomInset: false,
@@ -51,7 +57,9 @@ class OTPView extends StatelessWidget {
                 icon: Icon(Icons.arrow_back, color: pureWhite)),
             title: Text(
               "الرجوع",
-              style: TextStyle(color: pureWhite, fontFamily: 'MarkaziText',
+              style: TextStyle(
+                color: pureWhite,
+                fontFamily: 'MarkaziText',
               ),
             ),
           ),
@@ -75,7 +83,7 @@ class OTPView extends StatelessWidget {
                     Container(
                       width: context.getWidth(),
                       height: context.getHeight() * 0.35,
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(width: 0.2),
@@ -129,7 +137,9 @@ class OTPView extends StatelessWidget {
                                   onPressed: () {}, // Ignore this pressed
                                   child: Text(
                                     "أعد إرسال رمز التحقق بعد: ${timeLeft + 1}",
-                                    style: TextStyle(color: green,),
+                                    style: TextStyle(
+                                      color: green,
+                                    ),
                                   ),
                                 );
                               },
@@ -158,11 +168,13 @@ class OTPView extends StatelessWidget {
                     ),
                     TextButton(
                         onPressed: () {
-                          context.push(view: LoginView(), isPush: true);
+                          context.push(view: const LoginView(), isPush: true);
                         },
                         child: Text(
                           "الرجوع الى تسجيل الدخول",
-                          style: TextStyle(color: grey, fontFamily: 'MarkaziText',
+                          style: TextStyle(
+                            color: grey,
+                            fontFamily: 'MarkaziText',
                           ),
                         ))
                   ],

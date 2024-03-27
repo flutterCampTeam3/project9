@@ -20,9 +20,15 @@ class ChangePasswordView extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthSuccessState) {
           context.push(view: const LoginView(), isPush: true);
-          context.getMessagesBar(msg: state.msg, color: green);
+          context.showSuccessSnackBar(
+            context,
+            state.msg,
+          );
         } else if (state is AuthErrorState) {
-          context.getMessages(msg: state.msg, color: red);
+          context.showErrorSnackBar(
+            context,
+            state.msg,
+          );
         }
       },
       builder: (context, state) {
@@ -37,7 +43,9 @@ class ChangePasswordView extends StatelessWidget {
                 icon: Icon(Icons.arrow_back, color: pureWhite)),
             title: Text(
               "الرجوع",
-              style: TextStyle(color: pureWhite, fontFamily: 'MarkaziText',
+              style: TextStyle(
+                color: pureWhite,
+                fontFamily: 'MarkaziText',
               ),
             ),
           ),
@@ -51,7 +59,6 @@ class ChangePasswordView extends StatelessWidget {
                   child: Text(
                     "كلمة المرور الجديدة",
                     style: TextStyle(
-                      fontFamily: 'MarkaziText',
                       color: black,
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -98,7 +105,9 @@ class ChangePasswordView extends StatelessWidget {
                     },
                     child: Text(
                       "الرجوع الى تسجيل الدخول",
-                      style: TextStyle(color: grey, fontFamily: 'MarkaziText',
+                      style: TextStyle(
+                        color: grey,
+                        fontFamily: 'MarkaziText',
                       ),
                     ))
               ],

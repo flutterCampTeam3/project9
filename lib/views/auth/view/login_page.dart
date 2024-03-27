@@ -32,9 +32,12 @@ class LoginView extends StatelessWidget {
             listener: (context, state) {
               if (state is AuthSuccessState) {
                 context.push(view: const BottomNav(), isPush: true);
-                context.getMessages(msg: state.msg, color: green);
+                context.showSuccessSnackBar(context, state.msg);
               } else if (state is AuthErrorState) {
-                context.getMessages(msg: state.msg, color: red);
+                context.showErrorSnackBar(
+                  context,
+                  state.msg,
+                );
               }
             },
             builder: (context, state) {
@@ -101,6 +104,7 @@ class LoginView extends StatelessWidget {
                         TextFieldWidget(
                           text: "كلمة المرور",
                           controller: passwordController,
+                          obscure: true,
                         ),
                         Align(
                           alignment: Alignment.bottomRight,

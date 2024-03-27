@@ -23,7 +23,7 @@ class AskAiPage extends StatelessWidget {
         width: double.maxFinite,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [green, green, greenLight],
+              colors: [greenText, greenLight],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter),
         ),
@@ -67,25 +67,7 @@ class AskAiPage extends StatelessWidget {
                   height: 220,
                   child: Stack(
                     children: [
-                      Image.asset("assets/images/logo_2.png"),
-                      Positioned(
-                        bottom: 0,
-                        left: 40,
-                        child: Row(
-                          children: [
-                            SvgPicture.asset("assets/icons/hand_pell.svg"),
-                            width4,
-                            Text(
-                              "ساعد",
-                              style: TextStyle(
-                                  fontFamily: 'Cairo',
-                                  color: pureWhite,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 26),
-                            ),
-                          ],
-                        ),
-                      )
+                      Image.asset("assets/images/newIcon.png"),
                     ],
                   ),
                 ),

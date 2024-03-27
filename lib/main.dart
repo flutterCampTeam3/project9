@@ -53,7 +53,7 @@ class MainApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: GoogleFonts.vazirmatn().fontFamily,
         ),
-        home: const BottomNav(),
+        home: const LoginView(),
       ),
     );
   }

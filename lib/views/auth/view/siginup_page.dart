@@ -108,6 +108,7 @@ class SignUpView extends StatelessWidget {
                           TextFieldWidget(
                             text: "كلمة المرور",
                             controller: passwordController,
+                            obscure: true,
                           ),
                           const Spacer(),
 

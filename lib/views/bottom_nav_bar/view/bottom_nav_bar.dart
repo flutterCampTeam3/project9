@@ -17,7 +17,7 @@ class BottomNav extends StatelessWidget {
           body: navBloc.pages[navBloc.selectIndex],
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: green,
+            selectedItemColor: greenText,
             backgroundColor: pureWhite,
             showUnselectedLabels: true,
             currentIndex: navBloc.selectIndex,
@@ -28,7 +28,7 @@ class BottomNav extends StatelessWidget {
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(
                   'assets/icons/home.svg',
-                  color: green,
+                  color: greenLight,
                 ),
                 icon: SvgPicture.asset('assets/icons/home.svg'),
                 label: 'الرئيسية',
@@ -36,7 +36,7 @@ class BottomNav extends StatelessWidget {
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(
                   'assets/icons/drugs.svg',
-                  color: green,
+                  color: greenLight,
                 ),
                 icon: SvgPicture.asset('assets/icons/drugs.svg'),
                 label: 'أدويتي',
@@ -48,7 +48,7 @@ class BottomNav extends StatelessWidget {
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(
                   'assets/icons/ask.svg',
-                  color: green,
+                  color: greenLight,
                 ),
                 icon: SvgPicture.asset('assets/icons/ask.svg'),
                 label: 'اسأل ساعد',
@@ -56,7 +56,7 @@ class BottomNav extends StatelessWidget {
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(
                   'assets/icons/med.svg',
-                  color: green,
+                  color: greenLight,
                 ),
                 icon: SvgPicture.asset('assets/icons/med.svg'),
                 label: 'مسح دواء',

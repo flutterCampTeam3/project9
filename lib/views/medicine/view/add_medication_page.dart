@@ -17,12 +17,17 @@ import 'package:medicine_reminder_app/widgets/custom_elevated_button.dart';
 import 'package:medicine_reminder_app/widgets/custom_label.dart';
 import 'package:medicine_reminder_app/widgets/custom_notification.dart';
 
-class AddMedicationPage extends StatelessWidget {
+class AddMedicationPage extends StatefulWidget {
   const AddMedicationPage({super.key});
 
   @override
+  State<AddMedicationPage> createState() => _AddMedicationPageState();
+}
+
+class _AddMedicationPageState extends State<AddMedicationPage> {
+  @override
   Widget build(BuildContext context) {
-    int seletctedType = 1;
+    int selectedType = 1;
     final locator = GetIt.I.get<DBServices>();
     TextEditingController pellName = TextEditingController();
     return BlocProvider(
@@ -31,9 +36,15 @@ class AddMedicationPage extends StatelessWidget {
         listener: (context, state) {
           if (state is MedicineSuccessState) {
             context.push(view: const BottomNav(), isPush: false);
-            context.getMessages(msg: state.msg, color: green);
+            context.showSuccessSnackBar(
+              context,
+              state.msg,
+            );
           } else if (state is MedicineErrorState) {
-            context.getMessages(msg: state.msg, color: red);
+            context.showErrorSnackBar(
+              context,
+              state.msg,
+            );
           }
         },
         builder: (context, state) {
@@ -41,7 +52,7 @@ class AddMedicationPage extends StatelessWidget {
           return Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
-                actions: const [AppBarArrowBack()],
+                leading: const AppBarArrowBack(),
                 automaticallyImplyLeading: false),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -60,17 +71,12 @@ class AddMedicationPage extends StatelessWidget {
                   height10,
                   SizedBox(
                     height: 48,
-                    width: 319,
                     child: TextField(
                       controller: pellName,
                       // textDirection: TextDirection.rtl,
                       decoration: InputDecoration(
                         hintText: 'أكتب ...',
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.only(
-                              right: 15, top: 12, bottom: 18),
-                          child: SvgPicture.asset("assets/icons/drugs.svg"),
-                        ),
+                        icon: SvgPicture.asset("assets/icons/drugs.svg"),
                         hintTextDirection: TextDirection.rtl,
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
@@ -82,7 +88,7 @@ class AddMedicationPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  height32,
+                  height40,
                   const CustomLabel(
                     label: "كم حبة باليوم ومدة الدواء",
                   ),
@@ -91,30 +97,34 @@ class AddMedicationPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       // DropMenu(),
-                      SizedBox(
-                        height: 48,
-                        child: dropdownWidget(
-                          type: '',
-                          title: "يوم",
-                          path: 'assets/images/calendar-fill 1.png',
-                          count: 30,
-                          page: 1,
+                      Expanded(
+                        child: SizedBox(
+                          height: 48,
+                          child: dropdownWidget(
+                            type: '',
+                            title: "يوم",
+                            path: 'assets/images/calendar-fill 2.png',
+                            count: 30,
+                            page: 1,
+                          ),
                         ),
                       ),
                       width4,
-                      SizedBox(
-                        height: 48,
-                        child: dropdownWidget(
-                          type: 'counts',
-                          title: "حبة",
-                          path: 'assets/images/calendar-fill 1.png',
-                          count: 3,
-                          page: 1,
+                      Expanded(
+                        child: SizedBox(
+                          height: 48,
+                          child: dropdownWidget(
+                            type: 'counts',
+                            title: "حبة",
+                            path: 'assets/images/calendar-fill 1.png',
+                            count: 20,
+                            page: 1,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                  height32,
+                  height40,
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
@@ -124,48 +134,42 @@ class AddMedicationPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        GestureDetector(
-                          onTap: () {
-                            // bloc.add(ChangeTypeEvent(num: 1));
-                          },
-                          child: Row(
-                            children: [
-                              Radio(
-                                fillColor: MaterialStatePropertyAll(
-                                    textfieldGreenColor),
-                                value: 1,
-                                groupValue: seletctedType,
-                                onChanged: (_) {
-                                  // bloc.add(ChangeTypeEvent(num: 1));
-                                },
-                              ),
-                              const Text("قبل الاكل"),
-                            ],
-                          ),
+                        Row(
+                          children: [
+                            Radio(
+                              fillColor: MaterialStateProperty.all(
+                                  textfieldGreenColor),
+                              value: 1,
+                              groupValue: selectedType,
+                              onChanged: (val) {
+                                setState(() {
+                                  selectedType = 1;
+                                });
+                              },
+                            ),
+                            const Text("قبل الاكل"),
+                          ],
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            // bloc.add(ChangeTypeEvent(num: 2));
-                          },
-                          child: Row(
-                            children: [
-                              Radio(
-                                fillColor: MaterialStatePropertyAll(
-                                    textfieldGreenColor),
-                                value: 2,
-                                groupValue: seletctedType,
-                                onChanged: (_) {
-                                  // bloc.add(ChangeTypeEvent(num: 2));
-                                },
-                              ),
-                              const Text(" بعد الاكل"),
-                            ],
-                          ),
+                        Row(
+                          children: [
+                            Radio(
+                              fillColor: MaterialStateProperty.all(
+                                  textfieldGreenColor),
+                              value: 2,
+                              groupValue: selectedType,
+                              onChanged: (val) {
+                                setState(() {
+                                  selectedType = 2;
+                                });
+                              },
+                            ),
+                            const Text(" بعد الاكل"),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                  height32,
+                  height40,
                   Row(
                     children: [
                       Expanded(

@@ -35,6 +35,42 @@ extension Screen on BuildContext {
     );
   }
 
+  showSuccessSnackBar(
+    BuildContext context,
+    String msg,
+  ) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      margin: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        msg,
+        style: const TextStyle(
+          color: Colors.white,
+        ),
+      ),
+      backgroundColor: Colors.green,
+    ));
+  }
+
+  showErrorSnackBar(
+    BuildContext context,
+    String msg,
+  ) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      margin: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        msg,
+        style: const TextStyle(
+          color: Colors.white,
+        ),
+      ),
+      backgroundColor: Colors.red,
+    ));
+  }
+
   getMessages({required String msg, required Color color, int duration = 3}) {
     showDialog(
       context: this,

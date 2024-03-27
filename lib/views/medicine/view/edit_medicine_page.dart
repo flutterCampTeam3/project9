@@ -27,9 +27,15 @@ class EditMedicineView extends StatelessWidget {
         listener: (context, state) {
           if (state is MedicineSuccessState) {
             context.push(view: const BottomNav(), isPush: false);
-            context.getMessages(msg: state.msg, color: green);
+            context.showSuccessSnackBar(
+              context,
+              state.msg,
+            );
           } else if (state is MedicineErrorState) {
-            context.getMessages(msg: state.msg, color: red);
+            context.showErrorSnackBar(
+              context,
+              state.msg,
+            );
           }
         },
         builder: (context, state) {
@@ -112,14 +118,14 @@ class EditMedicineView extends StatelessWidget {
                     buttonColor: green,
                     styleColor: white,
                     onPressed: () async {
-                      final user_id = await locator.getCurrentUserId();
+                      final userId = await locator.getCurrentUserId();
                       bloc.add(MedicineUpdated(
                           medicine: MedicineModel(
                               name: pellName.text,
                               count: locator.pellCount,
                               period: locator.pellPireod,
                               time: locator.time.toString(),
-                              userId: user_id),
+                              userId: userId),
                           id: medicine.id!));
                     },
                   ),
