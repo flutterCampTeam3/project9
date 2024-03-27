@@ -9,6 +9,7 @@ import 'package:medicine_reminder_app/views/auth/view/login_page.dart';
 import 'package:medicine_reminder_app/views/auth/view/siginup_page.dart';
 import 'package:medicine_reminder_app/views/bottom_nav_bar/bloc/nav_bar_bloc.dart';
 import 'package:medicine_reminder_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
+import 'package:medicine_reminder_app/views/med_scan_info.dart';
 import 'package:medicine_reminder_app/views/medicine/bloc/medicine_bloc.dart';
 import 'package:medicine_reminder_app/views/medicine/view/add_medication_page.dart';
 import 'package:medicine_reminder_app/views/qr_barcode/bloc/scan_bloc.dart';
@@ -53,7 +54,7 @@ class MainApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: GoogleFonts.vazirmatn().fontFamily,
         ),
-        home: const LoginView(),
+        home: const MedInformation(),
       ),
     );
   }
