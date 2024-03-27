@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:medicine_reminder_app/data_layer/data_layer.dart';
 import 'package:medicine_reminder_app/service/supabase_services.dart';
