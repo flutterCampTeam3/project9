@@ -9,16 +9,16 @@ class AppBarArrowBack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsetsDirectional.only(start: 15, top: 8, bottom: 8),
       child: Container(
         decoration: BoxDecoration(
-            color: white,
+            color: greyColor,
             borderRadius: const BorderRadius.all(Radius.circular(7))),
         child: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_forward),
+          icon: Icon(Icons.arrow_back, color: darkGreyColor),
         ),
       ),
     );

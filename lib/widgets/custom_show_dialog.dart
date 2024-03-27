@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -36,60 +35,59 @@ class MedicineDialog extends StatelessWidget {
         switch (state) {
           case 0:
             {
-              final user_id = await locator.getCurrentUserId();
+              final userId = await locator.getCurrentUserId();
               bloc.add(MedicineUpdated(
                   medicine: MedicineModel(
                       name: medicine.name,
                       count: medicine.count,
                       period: medicine.period,
                       time: locator.time.toString(),
-                      userId: user_id,
+                      userId: userId,
                       state: medicine.state = stateEnum.take),
                   id: medicine.id!));
-                  
             }
 
           case 1:
             {
-              final user_id = await locator.getCurrentUserId();
+              final userId = await locator.getCurrentUserId();
               bloc.add(MedicineUpdated(
                   medicine: MedicineModel(
                       name: medicine.name,
                       count: medicine.count,
                       period: medicine.period,
                       time: locator.time.toString(),
-                      userId: user_id,
+                      userId: userId,
                       state: medicine.state = stateEnum.notYet),
                   id: medicine.id!));
             }
           case 2:
             {
-              final user_id = await locator.getCurrentUserId();
+              final userId = await locator.getCurrentUserId();
               bloc.add(MedicineUpdated(
                   medicine: MedicineModel(
                       name: medicine.name,
                       count: medicine.count,
                       period: medicine.period,
                       time: locator.time.toString(),
-                      userId: user_id,
+                      userId: userId,
                       state: medicine.state = stateEnum.skip),
                   id: medicine.id!));
             }
         }
-        context.push(view: BottomNav(), isPush: false);
+        context.push(view: const BottomNav(), isPush: false);
       },
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(
-            text,
-            textAlign: TextAlign.right,
-          ),
-          width16,
           Container(
             width: 10,
             height: 10,
             decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+          ),
+          width16,
+          Text(
+            text,
+            textAlign: TextAlign.right,
           ),
         ],
       ),

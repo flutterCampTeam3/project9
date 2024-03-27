@@ -45,7 +45,10 @@ class HomeView extends StatelessWidget {
                 BlocConsumer<MedicineBloc, MedicineState>(
                   listener: (context, state) {
                     if (state is MedicineErrorState) {
-                      context.getMessages(msg: state.msg, color: red);
+                      context.showErrorSnackBar(
+                        context,
+                        state.msg,
+                      );
                     }
                   },
                   builder: (context, state) {
@@ -71,9 +74,12 @@ class HomeView extends StatelessWidget {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        height56,
                         Image.asset("assets/images/Pharmacist-bro.png"),
-                        const Text("لا يوجد تنبيهات "),
+                        const Text(
+                          "لا يوجد تنبيهات ",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18),
+                        ),
                       ],
                     );
                   },

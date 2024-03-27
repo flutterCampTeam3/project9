@@ -18,74 +18,68 @@ class MedicineView extends StatelessWidget {
       create: (context) => MedicineBloc()..add(MedicineLoadEvent()),
       child: Builder(builder: (context) {
         return Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(40.0),
-            child: Column(
-              children: [
-                height20,
-                const Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "أدويتي",
-                    style: TextStyle(
-                        fontSize: 40,
-                        color: black,
-                        fontWeight: FontWeight.w600),
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  height20,
+                  const Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      "أدويتي",
+                      style: TextStyle(
+                          fontSize: 40,
+                          color: black,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
-                ),
-                height10,
-                BlocConsumer<MedicineBloc, MedicineState>(
-                    listener: (context, state) {
-                  if (state is MedicineErrorState) {
-                    context.getMessages(msg: state.msg, color: red);
-                  }
-                }, builder: (context, state) {
-                  if (state is MedicineLoadingState) {
-                    return shimmerEffect();
-                  }
-                  if (state is MedicineLoadedState) {
-                    if (state.list.isNotEmpty) {
-                      return Expanded(
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: state.list.length,
-                            itemBuilder: (context, index) {
-                              return ContainerMedication(
-                                medicine: state.list[index],
-                                isShowState: false,
-                                isEditState: true,
-                              );
-                            }),
+                  height10,
+                  BlocConsumer<MedicineBloc, MedicineState>(
+                      listener: (context, state) {
+                    if (state is MedicineErrorState) {
+                      context.showErrorSnackBar(
+                        context,
+                        state.msg,
                       );
                     }
-                  }
-                  return SizedBox(
-                    height: context.getHeight() * 0.5,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset("assets/images/nodrugs.jpeg"),
-                        const Text(
-                          "قم بإضافة دواء",
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
-                        ),
-                        Container(
-                            height: 50,
-                            width: 50,
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  "assets/images/arrowdown.png",
-                                  fit: BoxFit.contain,
-                                ),
-                              ],
-                            )),
-                      ],
-                    ),
-                  );
-                }),
-              ],
+                  }, builder: (context, state) {
+                    if (state is MedicineLoadingState) {
+                      return shimmerEffect();
+                    }
+                    if (state is MedicineLoadedState) {
+                      if (state.list.isNotEmpty) {
+                        return Expanded(
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: state.list.length,
+                              itemBuilder: (context, index) {
+                                return ContainerMedication(
+                                  medicine: state.list[index],
+                                  isShowState: false,
+                                  isEditState: true,
+                                );
+                              }),
+                        );
+                      }
+                    }
+                    return SizedBox(
+                      height: context.getHeight() * 0.5,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset("assets/images/Medicine-amico.png"),
+                          const Text(
+                            "قم بإضافة دواء",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+                ],
+              ),
             ),
           ),
         );

@@ -16,7 +16,7 @@ class ChatPage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            colors: [green, greenLight, white],
+            colors: [greenText, greenLight, white],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter),
       ),
@@ -24,7 +24,7 @@ class ChatPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
             backgroundColor: Colors.transparent,
-            actions: const [AppBarArrowBack()],
+            leading: const AppBarArrowBack(),
             automaticallyImplyLeading: false),
         body: BlocBuilder<ChatGptBloc, ChatGptState>(
           builder: (context, state) {
@@ -54,13 +54,15 @@ class ChatPage extends StatelessWidget {
                 inputDecoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: green),
-                      borderRadius: BorderRadius.all(Radius.circular(60))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(60))),
                   fillColor: Colors.white,
                   hintTextDirection: TextDirection.rtl,
                   hintText: "اكتب هنا",
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: greenLight),
-                      borderRadius: BorderRadius.all(Radius.circular(60))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(60))),
                 ),
               ),
               onSend: (ChatMessage chatMessage) async {

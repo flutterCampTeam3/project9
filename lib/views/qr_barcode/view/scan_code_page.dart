@@ -110,7 +110,7 @@ class ScanView extends StatelessWidget {
                 buttonColor: green,
                 styleColor: pureWhite,
               ),
-              height40
+              height20
             ],
           ),
         ),

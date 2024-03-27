@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:medicine_reminder_app/extensions/screen_handler.dart';
 import 'package:medicine_reminder_app/utils/colors.dart';
 import 'package:medicine_reminder_app/utils/spacing.dart';
@@ -16,14 +18,14 @@ class HeaderHomePage extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthSuccessState) {
           context.push(view: const FirstView(), isPush: true);
-          context.getMessages(
-            msg: state.msg,
-            color: green,
+          context.showSuccessSnackBar(
+            context,
+            state.msg,
           );
         } else if (state is AuthErrorState) {
-          context.getMessages(
-            msg: state.msg,
-            color: red,
+          context.showErrorSnackBar(
+            context,
+            state.msg,
           );
         }
       },
@@ -39,42 +41,37 @@ class HeaderHomePage extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Positioned(
-              bottom: -45,
+              bottom: -35,
               left: 30,
               child: Container(
-                width: 112,
-                height: 140,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
                 decoration: BoxDecoration(
-                  color: pureWhite,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(40),
-                      topRight: Radius.circular(40)),
-                ),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      height16,
-                      Image.asset(
-                        'assets/images/header_logo.jpg',
-                        width: 83,
-                        height: 80,
+                    color: whiteColor,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                        topRight: Radius.circular(40))),
+                child: Column(
+                  children: [
+                    height10,
+                    Image.asset(
+                      "assets/images/saed.png",
+                      height: 86,
+                    ),
+                    Text(
+                      "ساعد",
+                      style: TextStyle(
+                        color: teal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
                       ),
-                      Text(
-                        'ساعد',
-                        style: TextStyle(
-                            fontFamily: 'Cairo',
-                            fontSize: 30,
-                            color: green,
-                            fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ),
             ),
             Positioned(
-              right: 0,
+              right: 30,
               bottom: 0,
               child: SizedBox(
                 width: 100,
@@ -104,24 +101,24 @@ class HeaderHomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-              top: 20,
-              left: 7,
-              child: SizedBox(
-                width: 26,
-                height: 26,
-                child: Center(
-                  child: IconButton(
-                      onPressed: () {
-                        context.read<AuthBloc>().add(LogoutEvent());
-                      },
-                      icon: Icon(
-                        Icons.logout,
-                        color: white,
-                      )),
-                ),
-              ),
-            )
+            // Positioned(
+            //   top: 20,
+            //   left: 7,
+            //   child: SizedBox(
+            //     width: 26,
+            //     height: 26,
+            //     child: Center(
+            //       child: IconButton(
+            //           onPressed: () {
+            //             context.read<AuthBloc>().add(LogoutEvent());
+            //           },
+            //           icon: Icon(
+            //             Icons.logout,
+            //             color: white,
+            //           )),
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),
