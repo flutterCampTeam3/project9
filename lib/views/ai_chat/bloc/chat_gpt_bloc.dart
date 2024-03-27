@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
-import 'package:medicine_reminder_app/service/gpt_api.dart';
+import 'package:medicine_reminder_app/service/api.dart';
 import 'package:meta/meta.dart';
 
 part 'chat_gpt_event.dart';
@@ -29,7 +29,7 @@ class ChatGptBloc extends Bloc<ChatGptEvent, ChatGptState> {
         typingList.add(bot);
         emit(MessageChatState());
 
-        final answer = await ChatGPT().getChatAnswer(event.chatMessage.text);
+        final answer = await Api().getChatAnswer(event.chatMessage.text);
         final newMessage = ChatMessage(
           text: answer,
           user: bot,

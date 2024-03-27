@@ -55,7 +55,7 @@ class ScanView extends StatelessWidget {
                           width: 175,
                           height: 175,
                         ),
-                        Text(
+                        const Text(
                           'عذرًا، لم نتمكن من قراءة الباركود. يرجى المحاولة مرة أخرى.',
                           style: TextStyle(color: Colors.red, fontSize: 30, fontFamily: 'MarkaziText',
                           ),

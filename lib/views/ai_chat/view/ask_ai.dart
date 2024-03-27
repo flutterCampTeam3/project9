@@ -43,18 +43,18 @@ class AskAiPage extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: pureWhite,
                             borderRadius: BorderRadius.circular(60)),
-                        child:  Center(
+                        child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 locator.nameUser,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontFamily: 'Cairo',
                                 ),
                               ),
                               width4,
-                              Text(
+                              const Text(
                                 "مرحبا",
                                 style: TextStyle(
                                   fontFamily: 'Cairo',
@@ -63,7 +63,7 @@ class AskAiPage extends StatelessWidget {
                             ],
                           ),
                         ))),
-                Container(
+                SizedBox(
                   height: 220,
                   child: Stack(
                     children: [
