@@ -24,14 +24,25 @@ class MedicineView extends StatelessWidget {
               child: Column(
                 children: [
                   height20,
-                  const Align(
+                  Align(
                     alignment: Alignment.centerRight,
-                    child: Text(
-                      "أدويتي",
-                      style: TextStyle(
-                          fontSize: 40,
-                          color: black,
-                          fontWeight: FontWeight.w600),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "أدويتي",
+                          style: TextStyle(
+                              fontSize: 40,
+                              color: black,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Edit",
+                              style: TextStyle(fontSize: 20, color: grey),
+                            ))
+                      ],
                     ),
                   ),
                   height10,
