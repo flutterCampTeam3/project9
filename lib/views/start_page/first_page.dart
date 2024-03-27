@@ -15,6 +15,7 @@ class FirstView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.transparent,
       bottomSheet: Container(
         height: 250,
         width: double.infinity,
@@ -36,16 +37,17 @@ class FirstView extends StatelessWidget {
                 },
               ),
               height20,
-              // CustomElevatedButton(
-              //   text: "تسجيل الدخول كزائر",
-              //   buttonColor: white,
-              //   borderColor: green,
-              //   styleColor: black,
-              //   onPressed: () {
-              //     context.push(view: const BottomNav(), isPush: false);
-              //   },
-              // ),
-              // height20,
+              ///----- no need 
+           /*   CustomElevatedButton(
+                text: "تسجيل الدخول كزائر",
+                buttonColor: white,
+                borderColor: green,
+                styleColor: black,
+                onPressed: () {
+                  context.push(view: BottomNav(), isPush: false);
+                },
+              ),
+              */              height20,
               CustomElevatedButton(
                 text: "تسجيل جديد",
                 buttonColor: whiteColor,

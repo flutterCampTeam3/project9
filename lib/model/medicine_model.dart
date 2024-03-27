@@ -7,9 +7,19 @@ class MedicineModel {
   int? period;
   String? userId;
   String? id;
+  String? schedule;
+  bool? done;
   stateEnum? state;
 
-  MedicineModel({this.name, this.time, this.count, this.period, this.userId,this.state=stateEnum.notYet});
+  MedicineModel(
+      {this.name,
+      this.time,
+      this.count,
+      this.period,
+      this.userId,
+      this.schedule,
+      this.done,
+      this.state = stateEnum.notYet});
 
   MedicineModel.fromJson(Map<String, dynamic> json) {
     json['stats'];
@@ -19,9 +29,16 @@ class MedicineModel {
     period = json['period'];
     userId = json['user_id'];
     id = json['id'];
+    schedule = json['schedule'];
+    done = json['done'];
 
-    state = json['stats'].toString().contains("stateEnum.notYet")? stateEnum.notYet  : json['stats'].toString().contains("stateEnum.skip") ? stateEnum.skip:  json['stats'].toString().contains("stateEnum.take") ? stateEnum.take :stateEnum.reschedule;
-
+    state = json['stats'].toString().contains("stateEnum.notYet")
+        ? stateEnum.notYet
+        : json['stats'].toString().contains("stateEnum.skip")
+            ? stateEnum.skip
+            : json['stats'].toString().contains("stateEnum.take")
+                ? stateEnum.take
+                : stateEnum.reschedule;
   }
 
   Map<String, dynamic> toJson() {
@@ -32,7 +49,9 @@ class MedicineModel {
     data['period'] = period;
     data['user_id'] = userId;
     data['id'] = id;
-    data['state']=state;
+    data['schedule'] = schedule;
+    data['done'] = done;
+    data['state'] = state;
     return data;
   }
 
@@ -67,4 +86,4 @@ class MedicineModel {
   }
 }
 
-enum stateEnum{skip,take,reschedule,notYet}
+enum stateEnum { skip, take, reschedule, notYet }
