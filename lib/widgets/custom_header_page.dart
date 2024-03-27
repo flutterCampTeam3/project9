@@ -15,7 +15,7 @@ class HeaderHomePage extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccessState) {
-          context.push(view: FirstView(), isPush: true);
+          context.push(view: const FirstView(), isPush: true);
           context.getMessages(
             msg: state.msg,
             color: green,
@@ -30,8 +30,8 @@ class HeaderHomePage extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(8),
-            bottomRight: Radius.circular(8),
+            bottomLeft: Radius.circular(16),
+            bottomRight: Radius.circular(16),
           ),
           color: green,
         ),
@@ -107,7 +107,7 @@ class HeaderHomePage extends StatelessWidget {
             Positioned(
               top: 20,
               left: 7,
-              child: Container(
+              child: SizedBox(
                 width: 26,
                 height: 26,
                 child: Center(

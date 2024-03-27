@@ -5,7 +5,7 @@ import 'package:medicine_reminder_app/service/supabase_services.dart';
 import 'package:medicine_reminder_app/utils/colors.dart';
 
 class Notifications extends StatefulWidget {
-  const Notifications({Key? key}) : super(key: key);
+  const Notifications({super.key});
 
   @override
   _NotificationsState createState() => _NotificationsState();
@@ -30,7 +30,7 @@ class _NotificationsState extends State<Notifications> {
         width: context.getWidth(),
         height: 48,
         decoration: BoxDecoration(
-          color: white,
+          color: greyColor,
           borderRadius: const BorderRadius.all(Radius.circular(14)),
         ),
         child: Row(
@@ -45,7 +45,10 @@ class _NotificationsState extends State<Notifications> {
             const SizedBox(width: 8),
             Text(
               selectedTime.format(context),
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, fontFamily: 'NotoSansArabic',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+                fontFamily: 'NotoSansArabic',
               ),
             ),
           ],
@@ -57,7 +60,7 @@ class _NotificationsState extends State<Notifications> {
   Future<void> _selectTime(BuildContext context) async {
     final ThemeData theme = Theme.of(context);
     final TimeOfDay? picked = await showTimePicker(
-      cancelText:"خروج",
+      cancelText: "خروج",
       confirmText: "تأكيد",
       initialTime: selectedTime,
       context: context,
@@ -73,8 +76,7 @@ class _NotificationsState extends State<Notifications> {
     if (picked != null && picked != selectedTime) {
       setState(() {
         selectedTime = picked;
-        GetIt.I.get<DBServices>().time=selectedTime;
-
+        GetIt.I.get<DBServices>().time = selectedTime;
       });
     }
   }
@@ -82,8 +84,7 @@ class _NotificationsState extends State<Notifications> {
 
 TimePickerThemeData customTimePicker() {
   return TimePickerThemeData(
-    
-    cancelButtonStyle:  const ButtonStyle( 
+    cancelButtonStyle: const ButtonStyle(
         backgroundColor: MaterialStatePropertyAll(
       Color(0xFF65B19F),
     )),
@@ -124,7 +125,6 @@ TimePickerThemeData customTimePicker() {
     helpTextStyle: const TextStyle(
         fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
     inputDecorationTheme: const InputDecorationTheme(
-
       border: InputBorder.none,
       contentPadding: EdgeInsets.all(0),
     ),

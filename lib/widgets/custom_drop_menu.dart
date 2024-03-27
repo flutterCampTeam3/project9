@@ -6,8 +6,8 @@ import 'package:medicine_reminder_app/utils/colors.dart';
 
 class DropMenu extends StatefulWidget {
   const DropMenu({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   @override
   _DropMenuState createState() => _DropMenuState();
 }
@@ -26,7 +26,7 @@ class _DropMenuState extends State<DropMenu> {
           width: 151,
           height: 48,
           decoration: BoxDecoration(
-            color: white,
+            color: greyColor,
             borderRadius: const BorderRadius.all(Radius.circular(14)),
           ),
           child: Padding(
@@ -35,23 +35,28 @@ class _DropMenuState extends State<DropMenu> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SvgPicture.asset("assets/icons/pells.svg"),
-                Text("$_selectedNumberPill", style: const TextStyle(
-                  fontFamily: 'NotoSansArabic',
-                ),),
+                Text(
+                  "$_selectedNumberPill",
+                  style: const TextStyle(
+                    fontFamily: 'NotoSansArabic',
+                  ),
+                ),
                 DropdownButton<int>(
-                  
                   menuMaxHeight: 100,
                   dropdownColor: pureWhite,
                   borderRadius: BorderRadius.circular(20),
                   icon: const Icon(Icons.arrow_drop_down),
-                 hint: const Text("حبة", style: TextStyle(
-                    fontFamily: 'NotoSansArabic',
-                  ),),
+                  hint: const Text(
+                    "حبة",
+                    style: TextStyle(
+                      fontFamily: 'NotoSansArabic',
+                    ),
+                  ),
                   onChanged: (int? newValue) {
                     if (newValue != null) {
                       setState(() {
                         _selectedNumberPill = newValue;
-                        GetIt.I.get<DBServices>().pellCount=newValue;
+                        GetIt.I.get<DBServices>().pellCount = newValue;
                       });
                     }
                   },
@@ -62,15 +67,19 @@ class _DropMenuState extends State<DropMenu> {
                         value: index + 1,
                         child: Container(
                           decoration: BoxDecoration(
-                            border: Border.all(color:greenLight),
+                            border: Border.all(color: greenLight),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('${index+1}', textAlign: TextAlign.center, style: const TextStyle(
-                                fontFamily: 'NotoSansArabic',
-                              ),),
+                              Text(
+                                '${index + 1}',
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontFamily: 'NotoSansArabic',
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -89,7 +98,7 @@ class _DropMenuState extends State<DropMenu> {
           width: 151,
           height: 48,
           decoration: BoxDecoration(
-            color: white,
+            color: greyColor,
             borderRadius: const BorderRadius.all(Radius.circular(14)),
           ),
           child: Padding(
@@ -103,15 +112,13 @@ class _DropMenuState extends State<DropMenu> {
                   menuMaxHeight: 100,
                   dropdownColor: pureWhite,
                   borderRadius: BorderRadius.circular(20),
-
                   icon: const Icon(Icons.arrow_drop_down),
                   hint: const Text("يوم"),
                   onChanged: (int? newValue) {
                     if (newValue != null) {
                       setState(() {
                         _selectedNumberDay = newValue;
-                      GetIt.I.get<DBServices>().pellPireod=newValue;
-
+                        GetIt.I.get<DBServices>().pellPireod = newValue;
                       });
                     }
                   },
@@ -122,7 +129,7 @@ class _DropMenuState extends State<DropMenu> {
                         value: index + 1,
                         child: Container(
                           decoration: BoxDecoration(
-                            border: Border.all(color:greenLight),
+                            border: Border.all(color: greenLight),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Row(
