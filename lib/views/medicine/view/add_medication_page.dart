@@ -39,15 +39,13 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
             //   context,
             //   state.msg,
             // );
-                            context.getMessages(msg: state.msg, color: green);
-
+            context.getMessages(msg: state.msg, color: green);
           } else if (state is MedicineErrorState) {
             // context.showErrorSnackBar(
             //   context,
             //   state.msg,
             // );
-                            context.getMessages(msg: state.msg, color: red);
-
+            context.getMessages(msg: state.msg, color: red);
           }
         },
         builder: (context, state) {
@@ -212,18 +210,7 @@ class _AddMedicationPageState extends State<AddMedicationPage> {
                       buttonColor: green,
                       styleColor: white,
                       onPressed: () async {
-                        final userId = await locator.getCurrentUserId();
-                        MedicineModel newMedicine = MedicineModel(
-                          count: locator.pellCount,
-                          name: pellName.text,
-                          period: locator.pellPireod,
-                          time: locator.time.toString(),
-                          userId: userId,
-                          state: stateEnum.notYet,
-                          done: false,
-                          schedule: TimeOfDay.now(),
-                        );
-                        bloc.add(MedicineAdded(medicine: newMedicine));
+                        bloc.add(MedicineAdded(name: pellName.text));
                       },
                     ),
                   )

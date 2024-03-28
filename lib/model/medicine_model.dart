@@ -8,7 +8,7 @@ class MedicineModel {
   int? period;
   String? userId;
   String? id;
-  TimeOfDay? schedule;
+  String? schedule;
   bool? done;
   stateEnum? state;
   String? before;
@@ -31,7 +31,7 @@ class MedicineModel {
     period = json['period'] ?? 0;
     userId = json['user_id'] ?? "";
     id = json['id'] ?? "";
-    schedule = json['scheduling'] ?? TimeOfDay.now();
+    schedule = json['scheduling'] ?? "";
     done = json['done'] ?? false;
     before = json['before'] ?? "";
 

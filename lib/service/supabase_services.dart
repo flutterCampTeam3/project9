@@ -109,7 +109,7 @@ class DBServices {
 
   Future<List<MedicineModel>> getAllMedicine() async {
     final medicineListData = await supabase
-        .from('medication')
+        .from('mediction')
         .select('*')
         .match({'user_id': supabase.auth.currentUser!.id});
     List<MedicineModel> listOfMedicine = [];
@@ -122,15 +122,16 @@ class DBServices {
   //insert medication
   Future insertMediationData(MedicineModel medicine) async {
     print("in the add func");
-    final res = await supabase.from('medication').insert({
+    final res = await supabase.from('mediction').insert({
       'user_id': medicine.userId,
       'time': medicine.time!.substring(9, 15),
       "count": medicine.count,
       "piriod": medicine.period,
       "name": medicine.name,
+      "before": medicine.before,
       'stats': medicine.state.toString(),
       'done': false,
-      'scheduling': TimeOfDay.now(),
+      'scheduling': TimeOfDay.now().toString().substring(9, 15),
     });
     print("in the add func after the add ${res.hashCode.toInt()}");
   }

@@ -49,7 +49,7 @@ class HomeView extends StatelessWidget {
                       //   context,
                       //   state.msg,
                       // );
-                                      context.getMessages(msg: state.msg, color: red);
+                       context.getMessages(msg: state.msg, color: red);
 
                     }
                   },

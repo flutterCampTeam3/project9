@@ -13,9 +13,10 @@ class ChangeRadioEvent extends MedicineEvent {
 }
 
 class MedicineAdded extends MedicineEvent {
-  final MedicineModel medicine;
+  final String name;
 
-  MedicineAdded({required this.medicine});
+  MedicineAdded({required this.name});
+
 }
 
 class MedicineDeleted extends MedicineEvent {
