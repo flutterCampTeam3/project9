@@ -81,11 +81,11 @@ class ContainerMedication extends StatelessWidget {
                             Icons.circle,
                             size: 10,
                             color: medicine.state == stateEnum.notYet
-                                ? red
+                                ? Colors.orange
                                 : medicine.state == stateEnum.take
                                     ? green
                                     : medicine.state == stateEnum.skip
-                                        ? Colors.orange
+                                        ? red
                                         : Colors.yellow,
                           ),
                           TextButton(
@@ -99,11 +99,11 @@ class ContainerMedication extends StatelessWidget {
                             },
                             child: Text(
                               medicine.state == stateEnum.notYet
-                                  ? "لم يتم اخذ الدواء بعد"
+                                  ? "لم يتم \nاخذ الدواء بعد"
                                   : medicine.state == stateEnum.skip
-                                      ? "تم تخطي موعد اخذ الدواء"
+                                      ? "تم التخطي"
                                       : medicine.state == stateEnum.take
-                                          ? "تم اخذ الدواء في الموعد"
+                                          ? "تم اخذ الدواء"
                                           : "تم إعادة الجدولة",
                               style: const TextStyle(
                                 fontFamily: 'NotoSansArabic',

@@ -24,24 +24,24 @@ class MedicineView extends StatelessWidget {
               child: Column(
                 children: [
                   height20,
-                  Align(
+                  const Align(
                     alignment: Alignment.centerRight,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                        Text(
                           "أدويتي",
                           style: TextStyle(
                               fontSize: 40,
                               color: black,
                               fontWeight: FontWeight.w600),
                         ),
-                        TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              "Edit",
-                              style: TextStyle(fontSize: 20, color: grey),
-                            ))
+                        // TextButton(
+                        //     onPressed: () {},
+                        //     child: Text(
+                        //       "Edit",
+                        //       style: TextStyle(fontSize: 20, color: grey),
+                        //     ))
                       ],
                     ),
                   ),
@@ -49,9 +49,7 @@ class MedicineView extends StatelessWidget {
                   BlocConsumer<MedicineBloc, MedicineState>(
                       listener: (context, state) {
                     if (state is MedicineErrorState) {
-               
-                                      context.getMessages(msg: state.msg, color: red);
-
+                      context.getMessages(msg: state.msg, color: red);
                     }
                   }, builder: (context, state) {
                     if (state is MedicineLoadingState) {

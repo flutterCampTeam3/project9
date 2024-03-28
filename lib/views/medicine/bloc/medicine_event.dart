@@ -28,5 +28,7 @@ class MedicineDeleted extends MedicineEvent {
 class MedicineUpdated extends MedicineEvent {
   final MedicineModel medicine;
   final String id;
-  MedicineUpdated({required this.medicine, required this.id});
+  final MedicineModel currentMedicine;
+
+  MedicineUpdated({required this.medicine, required this.id, required this.currentMedicine});
 }

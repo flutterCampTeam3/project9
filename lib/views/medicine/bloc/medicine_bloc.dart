@@ -64,6 +64,10 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
             schedule: TimeOfDay.now().toString(),
           );
           await locator.insertMediationData(newMedicine);
+          locator.dosesCounts = 0;
+          locator.pellCount = 0;
+          locator.pellPireod = 0;
+          locator.time = TimeOfDay.now();
         } else if (locator.dosesCounts == 2) {
           final name1 = "${event.name} - الجرعة الاولي";
           final name2 = "${event.name} - الجرعة الثانيه";
@@ -95,6 +99,10 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
             schedule: TimeOfDay.now().toString(),
           );
           await locator.insertMediationData(new2Medicine);
+          locator.dosesCounts = 0;
+          locator.pellCount = 0;
+          locator.pellPireod = 0;
+          locator.time = TimeOfDay.now();
         } else if (locator.dosesCounts == 3) {
           final name1 = "${event.name} - الجرعة الاولي";
           final name2 = "${event.name} - الجرعة الثانيه";
@@ -135,7 +143,7 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
           );
           MedicineModel new3Medicine = MedicineModel(
             count: locator.pellCount,
-            name: name2,
+            name: name3,
             before: condition,
             period: locator.pellPireod,
             time: time3.toString(),
@@ -145,6 +153,10 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
             schedule: TimeOfDay.now().toString(),
           );
           await locator.insertMediationData(new3Medicine);
+          locator.dosesCounts = 0;
+          locator.pellCount = 0;
+          locator.pellPireod = 0;
+          locator.time = TimeOfDay.now();
         }
         emit(MedicineSuccessState(msg: "تمت إضافة الدواء بنجاح"));
       } catch (e) {
@@ -159,7 +171,17 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
       MedicineUpdated event, Emitter<MedicineState> emit) async {
     if (event.medicine.name!.trim().isNotEmpty) {
       try {
-        await locator.upDateMediationData(event.medicine, event.id);
+        final med = MedicineModel(
+            name: event.medicine.name,
+            count: locator.pellCount,
+            period: locator.pellPireod,
+            time: locator.time.toString(),
+            userId: event.medicine.userId,
+            before: event.currentMedicine.before,
+            done: event.currentMedicine.done,
+            schedule: event.currentMedicine.schedule);
+        await locator.upDateMediationData(med, event.currentMedicine.id!);
+        listOfMedicine = await locator.getAllMedicine();
         emit(MedicineLoadedState(list: listOfMedicine));
         emit(MedicineSuccessState(msg: "تم تحديث الدواء بنجاح"));
       } catch (e) {

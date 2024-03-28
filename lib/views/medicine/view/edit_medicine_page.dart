@@ -172,12 +172,14 @@ class EditMedicineView extends StatelessWidget {
                     onPressed: () async {
                       final userId = await locator.getCurrentUserId();
                       bloc.add(MedicineUpdated(
+                        currentMedicine: medicine,
                           medicine: MedicineModel(
                               name: pellName.text,
                               count: locator.pellCount,
                               period: locator.pellPireod,
                               time: locator.time.toString(),
-                              userId: userId),
+                              userId: userId,
+                              ),
                           id: medicine.id!));
                     },
                   ),

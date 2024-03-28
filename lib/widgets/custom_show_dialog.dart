@@ -18,9 +18,8 @@ class MedicineDialog extends StatelessWidget {
           alignment: Alignment.centerRight, child: Text('حالة تناول الدواء')),
       children: [
         buildDialogOption('تم أخذ الدواء', Colors.green, context, 0, medicine),
-        buildDialogOption(
-            'لم يتم أخذ الدواء', Colors.red, context, 1, medicine),
-        buildDialogOption('تم التخطي', Colors.orange, context, 2, medicine),
+        buildDialogOption('تم التخطي', Colors.red, context, 1, medicine),
+        buildDialogOption('اعادة جدولة', Colors.yellow, context, 2, medicine),
       ],
     );
   }
@@ -37,13 +36,17 @@ class MedicineDialog extends StatelessWidget {
             {
               final userId = await locator.getCurrentUserId();
               bloc.add(MedicineUpdated(
+                  currentMedicine: medicine,
                   medicine: MedicineModel(
                       name: medicine.name,
                       count: medicine.count,
                       period: medicine.period,
+                      before: medicine.before,
+                      done: true,
+                      schedule: medicine.schedule,
                       time: locator.time.toString(),
                       userId: userId,
-                      state: medicine.state = stateEnum.take),
+                      state: stateEnum.take),
                   id: medicine.id!));
             }
 
@@ -51,26 +54,34 @@ class MedicineDialog extends StatelessWidget {
             {
               final userId = await locator.getCurrentUserId();
               bloc.add(MedicineUpdated(
+                  currentMedicine: medicine,
                   medicine: MedicineModel(
                       name: medicine.name,
                       count: medicine.count,
                       period: medicine.period,
                       time: locator.time.toString(),
+                      before: medicine.before,
+                      done: true,
+                      schedule: medicine.schedule,
                       userId: userId,
-                      state: medicine.state = stateEnum.notYet),
+                      state: stateEnum.skip),
                   id: medicine.id!));
             }
           case 2:
             {
               final userId = await locator.getCurrentUserId();
               bloc.add(MedicineUpdated(
+                  currentMedicine: medicine,
                   medicine: MedicineModel(
                       name: medicine.name,
                       count: medicine.count,
+                      done: true,
+                      before: medicine.before,
+                      schedule: medicine.schedule,
                       period: medicine.period,
                       time: locator.time.toString(),
                       userId: userId,
-                      state: medicine.state = stateEnum.skip),
+                      state: stateEnum.reschedule),
                   id: medicine.id!));
             }
         }

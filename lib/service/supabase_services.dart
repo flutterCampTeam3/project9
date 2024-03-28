@@ -11,8 +11,8 @@ class DBServices {
   int pellCount = 0;
   int dosesCounts = 0;
   int pellPireod = 0;
-  String typeat="قبل الاكل ";
-   
+  String typeat = "قبل الاكل ";
+
   TimeOfDay time = TimeOfDay.now();
   String email = "";
   String nameUser = "بك";
@@ -123,38 +123,41 @@ class DBServices {
 
   //insert medication
   Future insertMediationData(MedicineModel medicine) async {
-    print("in the add func");
     final res = await supabase.from('mediction').insert({
       'user_id': medicine.userId,
-      'time': medicine.time!.substring(9, 15),
-      "count": medicine.count,
-      "piriod": medicine.period,
-      "name": medicine.name,
-      "before": medicine.before,
-      'stats': medicine.state.toString(),
-      'done': false,
-      'scheduling': TimeOfDay.now().toString().substring(9, 15),
-    });
-    print("in the add func after the add ${res.hashCode.toInt()}");
-  }
-
-  //update medication
-  Future upDateMediationData(MedicineModel medicine, String id) async {
-    final usetID = await getCurrentUserId();
-    await supabase.from('medication').update({
-      'user_id': usetID,
       'time': medicine.time!.substring(9, 15),
       'count': medicine.count,
       'piriod': medicine.period,
       'name': medicine.name,
-      'done': medicine.done,
-      'scheduling': medicine.schedule,
+      'before': medicine.before,
       'stats': medicine.state.toString(),
+      'done': false,
+      'scheduling': TimeOfDay.now().toString().substring(9, 15),
+    });
+  }
+
+  //update medication
+  Future upDateMediationData(MedicineModel medicine, String id) async {
+    final userID = await getCurrentUserId();
+    print("in the ub func");
+    await supabase.from('mediction').update({
+      'user_id': userID,
+      'time': medicine.time!.substring(9, 15),
+      'count': medicine.count,
+      'piriod': medicine.period,
+      'name': medicine.name,
+      'before': medicine.before,
+      'done': medicine.done,
+      'scheduling': medicine.schedule!,
+      'stats': medicine.state.toString()
     }).eq("id", id);
+    print("in the add func after the ub ");
   }
 
   //delete medication
   Future deleteMediationData(String id) async {
+    print("in the delet func");
     await supabase.from('medication').delete().eq("id", id);
+    print("in the no func");
   }
 }
