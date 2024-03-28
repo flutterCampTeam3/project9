@@ -186,11 +186,11 @@ class ContainerMedication extends StatelessWidget {
                         },
                         child: Image.asset('assets/images/edit.png')),
                     width4,
-                    InkWell(
-                        onTap: () {
-                          moreBottomSheet(context);
-                        },
-                        child: const Icon(Icons.keyboard_arrow_down_rounded)),
+                    // InkWell(
+                    //     onTap: () {
+                    //       moreBottomSheet(context);
+                    //     },
+                    //     child: const Icon(Icons.keyboard_arrow_down_rounded)),
                   ],
                 ),
               ],

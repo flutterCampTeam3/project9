@@ -39,6 +39,19 @@ class DBServices {
     nameUser = userInfo['username'];
   }
 
+  // parCode Read and get the data
+  Future getScanData({required String code}) async {
+    print("before------------------");
+    var ScanInfo =
+        await supabase.from('scan').select('*').eq('code', code).single();
+    print("data");
+    // ScanInfo["name"];
+    final medInfo = ScanModel.fromJson(ScanInfo);
+    print("code------------------");
+    print("code------------------ ${ScanInfo["name"]}");
+    return medInfo;
+  }
+
   //Login
   Future login({required String email, required String password}) async {
     await supabase.auth.signInWithPassword(password: password, email: email);
@@ -98,17 +111,6 @@ class DBServices {
     await supabase.auth.updateUser(UserAttributes(password: password));
   }
 
-// parCode Read and get the data
-  Future getScanData({required String qrResult}) async {
-    var ScanInfo = await supabase
-        .from('scan')
-        .select('*')
-        .match({'code': qrResult}).single();
-    ScanInfo["name"];
-    final medInfo = ScanModel.fromJson(ScanInfo);
-    return ScanInfo;
-  }
-
   Future<List<MedicineModel>> getAllMedicine() async {
     final medicineListData = await supabase
         .from('mediction')
@@ -154,10 +156,20 @@ class DBServices {
     print("in the add func after the ub ");
   }
 
+  //update state
+  Future upDateState(String state, String id) async {
+    print("in the update func");
+    await supabase.from('mediction').update({
+      'done': true,
+      'stats': state,
+    }).eq("id", id);
+    print("in the update func after the ub ");
+  }
+
   //delete medication
   Future deleteMediationData(String id) async {
     print("in the delet func");
-    await supabase.from('medication').delete().eq("id", id);
+    await supabase.from('mediction').delete().eq("id", id);
     print("in the no func");
   }
 }

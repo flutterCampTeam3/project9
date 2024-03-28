@@ -12,6 +12,13 @@ extension Screen on BuildContext {
     );
   }
 
+
+  pushtoV({required Widget view}) {
+    return Navigator.of(this).push(
+      MaterialPageRoute(builder: (context) => view),
+    );
+  }
+
   getHeight() {
     return MediaQuery.of(this).size.height;
   }

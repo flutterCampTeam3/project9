@@ -20,6 +20,7 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
     on<MedicineLoadEvent>(loadMedicineData);
     on<ChangeRadioEvent>(changeRadio);
     on<MedicineAdded>(addMedicine);
+    on<UpdateStateEvent>(editState);
     on<MedicineUpdated>(updateMedicine);
     on<MedicineDeleted>(deleteMedicine);
   }
@@ -158,6 +159,8 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
           locator.pellPireod = 0;
           locator.time = TimeOfDay.now();
         }
+        listOfMedicine = await locator.getAllMedicine();
+        emit(MedicineLoadedState(list: listOfMedicine));
         emit(MedicineSuccessState(msg: "تمت إضافة الدواء بنجاح"));
       } catch (e) {
         emit(MedicineErrorState(msg: "حدث خطأ أثناء إضافة الدواء"));
@@ -196,6 +199,7 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
       MedicineDeleted event, Emitter<MedicineState> emit) async {
     try {
       await locator.deleteMediationData(event.medicine.id!);
+      listOfMedicine = await locator.getAllMedicine();
       emit(MedicineLoadedState(list: listOfMedicine));
       emit(MedicineSuccessState(msg: "تم حذف الدواء بنجاح"));
     } catch (e) {
@@ -207,5 +211,18 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
       ChangeRadioEvent event, Emitter<MedicineState> emit) {
     selectedType = event.num;
     emit(ChangeState());
+  }
+
+  FutureOr<void> editState(
+      UpdateStateEvent event, Emitter<MedicineState> emit) async {
+    try {
+      await locator.upDateState(event.state, event.medicine.id!);
+      await locator.upDateState(event.state, event.medicine.id!);
+      listOfMedicine = await locator.getAllMedicine();
+      emit(MedicineLoadedState(list: listOfMedicine));
+      emit(MedicineSuccessState(msg: "تم تحديث الدواء بنجاح"));
+    } catch (e) {
+      emit(MedicineErrorState(msg: "حدث خطأ أثناء تحديث الدواء"));
+    }
   }
 }

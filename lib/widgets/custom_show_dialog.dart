@@ -34,55 +34,19 @@ class MedicineDialog extends StatelessWidget {
         switch (state) {
           case 0:
             {
-              final userId = await locator.getCurrentUserId();
-              bloc.add(MedicineUpdated(
-                  currentMedicine: medicine,
-                  medicine: MedicineModel(
-                      name: medicine.name,
-                      count: medicine.count,
-                      period: medicine.period,
-                      before: medicine.before,
-                      done: true,
-                      schedule: medicine.schedule,
-                      time: locator.time.toString(),
-                      userId: userId,
-                      state: stateEnum.take),
-                  id: medicine.id!));
+              bloc.add(UpdateStateEvent(
+                  state: stateEnum.take.toString(), medicine: medicine));
             }
 
           case 1:
             {
-              final userId = await locator.getCurrentUserId();
-              bloc.add(MedicineUpdated(
-                  currentMedicine: medicine,
-                  medicine: MedicineModel(
-                      name: medicine.name,
-                      count: medicine.count,
-                      period: medicine.period,
-                      time: locator.time.toString(),
-                      before: medicine.before,
-                      done: true,
-                      schedule: medicine.schedule,
-                      userId: userId,
-                      state: stateEnum.skip),
-                  id: medicine.id!));
+              bloc.add(UpdateStateEvent(
+                  state: stateEnum.skip.toString(), medicine: medicine));
             }
           case 2:
             {
-              final userId = await locator.getCurrentUserId();
-              bloc.add(MedicineUpdated(
-                  currentMedicine: medicine,
-                  medicine: MedicineModel(
-                      name: medicine.name,
-                      count: medicine.count,
-                      done: true,
-                      before: medicine.before,
-                      schedule: medicine.schedule,
-                      period: medicine.period,
-                      time: locator.time.toString(),
-                      userId: userId,
-                      state: stateEnum.reschedule),
-                  id: medicine.id!));
+              bloc.add(UpdateStateEvent(
+                  state: stateEnum.reschedule.toString(), medicine: medicine));
             }
         }
         context.push(view: const BottomNav(), isPush: false);

@@ -9,14 +9,12 @@ class ChangeRadioEvent extends MedicineEvent {
   final int num;
 
   ChangeRadioEvent({required this.num});
-  
 }
 
 class MedicineAdded extends MedicineEvent {
   final String name;
 
   MedicineAdded({required this.name});
-
 }
 
 class MedicineDeleted extends MedicineEvent {
@@ -30,5 +28,15 @@ class MedicineUpdated extends MedicineEvent {
   final String id;
   final MedicineModel currentMedicine;
 
-  MedicineUpdated({required this.medicine, required this.id, required this.currentMedicine});
+  MedicineUpdated(
+      {required this.medicine,
+      required this.id,
+      required this.currentMedicine});
+}
+
+class UpdateStateEvent extends MedicineEvent {
+  final String state;
+  final MedicineModel medicine;
+
+  UpdateStateEvent({required this.state, required this.medicine});
 }

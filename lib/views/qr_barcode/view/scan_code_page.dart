@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medicine_reminder_app/extensions/screen_handler.dart';
 import 'package:medicine_reminder_app/model/scan_model.dart';
 import 'package:medicine_reminder_app/service/supabase_services.dart';
 import 'package:medicine_reminder_app/utils/colors.dart';
 import 'package:medicine_reminder_app/utils/spacing.dart';
+import 'package:medicine_reminder_app/views/med_scan_info.dart';
 import 'package:medicine_reminder_app/views/qr_barcode/bloc/scan_bloc.dart';
 import 'package:medicine_reminder_app/widgets/custom_elevated_button.dart';
 
@@ -107,9 +109,15 @@ class ScanView extends StatelessWidget {
               CustomElevatedButton(
                 onPressed: () async {
                   // BlocProvider.of<ScanBloc>(context).add(ScanQR());
-                  final String result =
-                      await DBServices().getScanData(qrResult: "6281101220762");
-                  print(result);
+                  final ScanModel result =
+                      await DBServices().getScanData(code: '6281150553613');
+                  context.push(
+                      view: MedInformation(
+                        disc: result.desc!,
+                        name: result.name!,
+                        image: result.image!,
+                      ),
+                      isPush: false);
                 },
                 text: "امسح الباركود",
                 buttonColor: green,
