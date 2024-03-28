@@ -103,24 +103,24 @@ class HeaderHomePage extends StatelessWidget {
                 ),
               ),
             ),
-            // Positioned(
-            //   top: 20,
-            //   left: 7,
-            //   child: SizedBox(
-            //     width: 26,
-            //     height: 26,
-            //     child: Center(
-            //       child: IconButton(
-            //           onPressed: () {
-            //             context.read<AuthBloc>().add(LogoutEvent());
-            //           },
-            //           icon: Icon(
-            //             Icons.logout,
-            //             color: white,
-            //           )),
-            //     ),
-            //   ),
-            // )
+            Positioned(
+              top: 20,
+              left: 7,
+              child: SizedBox(
+                width: 26,
+                height: 26,
+                child: Center(
+                  child: IconButton(
+                      onPressed: () {
+                        context.read<AuthBloc>().add(LogoutEvent());
+                      },
+                      icon: Icon(
+                        Icons.logout,
+                        color: white,
+                      )),
+                ),
+              ),
+            )
           ],
         ),
       ),

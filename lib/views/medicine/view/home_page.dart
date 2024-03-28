@@ -45,12 +45,7 @@ class HomeView extends StatelessWidget {
                 BlocConsumer<MedicineBloc, MedicineState>(
                   listener: (context, state) {
                     if (state is MedicineErrorState) {
-                      // context.showErrorSnackBar(
-                      //   context,
-                      //   state.msg,
-                      // );
-                       context.getMessages(msg: state.msg, color: red);
-
+                      context.getMessages(msg: state.msg, color: red);
                     }
                   },
                   builder: (context, state) {
